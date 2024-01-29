@@ -1,3 +1,4 @@
+using TriInspector;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Serialization;
@@ -36,12 +37,23 @@ public class FarmerStateManager : MonoBehaviour
     public NavMeshAgent agent;
     public Animator animator;
     public AiWayPoints wayPoints;
+    
+    private Vector3 _firstDestination;
+    private Vector3 _endDestination;
+    public Vector3 FirstDestination => _firstDestination;
+    public Vector3 EndDestination => _endDestination;
+
+    public Transform Field;
+    public Transform Inventory;
 
     // Start is called before the first frame update
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
+        
+        _firstDestination = Inventory.position;
+        _endDestination = Field.position;
 
         farmerAction = FarmerActions.Idle;
         CurrentState = IdleState;
@@ -65,26 +77,16 @@ public class FarmerStateManager : MonoBehaviour
     {
         CurrentState.OnTriggerEnter(this, other);
     }
-
-    // public bool isBusy;
-    // public bool seeding;
-    // public bool watering;
-    // public bool harvesting;
-
-    private Vector3 _firstDestination;
-    private Vector3 _endDestination;
     
-    public Vector3 FirstDestination => _firstDestination;
-    public Vector3 EndDestination => _endDestination;
-    
-    
+    [Button]
     public void GoSeeding(Vector3 firstDestination, Vector3 endDestination)
     {
         // isBusy = true;
         // seeding = true;
         farmerAction = FarmerActions.Seeding;
-        _firstDestination = firstDestination;
-        _endDestination = endDestination;
+        // _firstDestination = firstDestination;
+        // _endDestination = endDestination;
+        SwitchState(IdleState);
     }
 
     public void GoWatering(Vector3 firstDestination, Vector3 endDestination)
@@ -105,6 +107,7 @@ public class FarmerStateManager : MonoBehaviour
         _endDestination = endDestination;
     }
 
+    [Button]
     public void ActionComplete()
     {
         farmerAction = FarmerActions.Idle;

@@ -545,9 +545,10 @@ GameObject:
   - component: {fileID: 643210719}
   - component: {fileID: 643210718}
   - component: {fileID: 643210717}
+  - component: {fileID: 643210721}
   m_Layer: 0
   m_Name: Inventory
-  m_TagString: Untagged
+  m_TagString: Inventory
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -638,6 +639,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &643210721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 643210716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35e95dc5ff2b64380880dd7ac5922847, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Size: {x: 0.52039975, y: 0.8833562, z: 0.5219935}
+  m_Center: {x: -0.030750424, y: -0.058321893, z: 0.052958474}
+  m_Area: 1
+  m_AffectedAgents: ffffffff
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -1016,8 +1033,8 @@ GameObject:
   - component: {fileID: 1528886070}
   - component: {fileID: 1528886069}
   m_Layer: 0
-  m_Name: Cube
-  m_TagString: Untagged
+  m_Name: Field
+  m_TagString: Field
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1034,8 +1051,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35e95dc5ff2b64380880dd7ac5922847, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Size: {x: 1, y: 2.23, z: 1}
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Size: {x: 0.54485095, y: 2.23, z: 0.5570226}
+  m_Center: {x: 0.007817447, y: 1, z: 0.049974732}
   m_Area: 1
   m_AffectedAgents: ffffffff
 --- !u!65 &1528886070
@@ -1053,7 +1070,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -1197,7 +1214,7 @@ PrefabInstance:
     - target: {fileID: 3580838922509221097, guid: 4fbf78656b4b4d14489322e1d3204c97,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.02
+      value: 15.78
       objectReference: {fileID: 0}
     - target: {fileID: 3580838922509221097, guid: 4fbf78656b4b4d14489322e1d3204c97,
         type: 3}
@@ -1207,7 +1224,7 @@ PrefabInstance:
     - target: {fileID: 3580838922509221097, guid: 4fbf78656b4b4d14489322e1d3204c97,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 17.64
       objectReference: {fileID: 0}
     - target: {fileID: 3580838922509221097, guid: 4fbf78656b4b4d14489322e1d3204c97,
         type: 3}
@@ -1251,6 +1268,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8962877385280880274, guid: 4fbf78656b4b4d14489322e1d3204c97,
         type: 3}
+      propertyPath: Field
+      value: 
+      objectReference: {fileID: 1528886073}
+    - target: {fileID: 8962877385280880274, guid: 4fbf78656b4b4d14489322e1d3204c97,
+        type: 3}
+      propertyPath: Inventory
+      value: 
+      objectReference: {fileID: 643210720}
+    - target: {fileID: 8962877385280880274, guid: 4fbf78656b4b4d14489322e1d3204c97,
+        type: 3}
       propertyPath: wayPoints
       value: 
       objectReference: {fileID: 1384215175}
@@ -1281,7 +1308,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1949404747705756588}
   serializedVersion: 4
-  m_Mass: 0.0000001
+  m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -1328,8 +1355,8 @@ SceneRoots:
   - {fileID: 330585546}
   - {fileID: 410087041}
   - {fileID: 832575519}
-  - {fileID: 1024398157}
   - {fileID: 1949404747705756587}
   - {fileID: 1384215176}
+  - {fileID: 1024398157}
   - {fileID: 643210720}
   - {fileID: 1528886073}
