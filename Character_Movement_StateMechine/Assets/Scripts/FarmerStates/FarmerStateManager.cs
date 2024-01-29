@@ -1,8 +1,17 @@
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Serialization;
 
+public enum FarmerActions
+{
+    Idle,
+    Seeding,
+    Watering,
+    Harvesting,
+}
 public class FarmerStateManager : MonoBehaviour
 {
+    public FarmerActions farmerAction;
     [Header("Idle")]
     [SerializeField] private float maxStandTime = 7f;
     [SerializeField] private float minStandTime = 5f;
@@ -13,7 +22,7 @@ public class FarmerStateManager : MonoBehaviour
     public float MinStandTime => minStandTime;
     public float MaxWalkTime => maxWalkTime;
     public float MinWalkTime => minWalkTime;
-    
+
     public FarmerBaseState CurrentState;
     public FarmerIdleState IdleState = new FarmerIdleState();
     public FarmerWalkState WalkingState = new FarmerWalkState();
@@ -21,10 +30,11 @@ public class FarmerStateManager : MonoBehaviour
     public FarmerHarvestingState HarvestingState = new FarmerHarvestingState();
     public FarmerWateringState WateringState = new FarmerWateringState();
     public FarmerPlantingState PlantingState = new FarmerPlantingState();
+    public FarmerboxPickupState BoxPickupState = new FarmerboxPickupState();
+    public FarmerSeedingState SeedingState = new FarmerSeedingState();
 
     public NavMeshAgent agent;
     public Animator animator;
-
     public AiWayPoints wayPoints;
 
     // Start is called before the first frame update
@@ -32,7 +42,8 @@ public class FarmerStateManager : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
-        
+
+        farmerAction = FarmerActions.Idle;
         CurrentState = IdleState;
         CurrentState.EnterState(this);
     }
@@ -53,5 +64,42 @@ public class FarmerStateManager : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         CurrentState.OnTriggerEnter(this, other);
+    }
+
+    // public bool isBusy;
+    // public bool seeding;
+    // public bool watering;
+    // public bool harvesting;
+
+    private Vector3 _firstDestination;
+    private Vector3 _endDestination;
+    
+    public Vector3 FirstDestination => _firstDestination;
+    public Vector3 EndDestination => _endDestination;
+    public void GoSeeding(Vector3 firstDestination, Vector3 endDestination)
+    {
+        // isBusy = true;
+        // seeding = true;
+        farmerAction = FarmerActions.Seeding;
+        _firstDestination = firstDestination;
+        _endDestination = endDestination;
+    }
+
+    public void GoWatering(Vector3 firstDestination, Vector3 endDestination)
+    {
+        // isBusy = true;
+        // watering = true;
+        farmerAction = FarmerActions.Watering;
+        _firstDestination = firstDestination;
+        _endDestination = endDestination;
+    }
+
+    public void GoHarvesting(Vector3 firstDestination, Vector3 endDestination)
+    {
+        // isBusy = true;
+        // harvesting = true;
+        farmerAction = FarmerActions.Harvesting;
+        _firstDestination = firstDestination;
+        _endDestination = endDestination;
     }
 }

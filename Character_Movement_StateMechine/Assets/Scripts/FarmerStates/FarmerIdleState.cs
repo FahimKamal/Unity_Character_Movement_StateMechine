@@ -12,11 +12,20 @@ public class FarmerIdleState : FarmerBaseState
 
     public override void UpdateState(FarmerStateManager farmer)
     {
-        _timer += Time.deltaTime;
-        if (_timer > Random.Range(farmer.MinStandTime, farmer.MaxStandTime))
+        if (farmer.farmerAction == FarmerActions.Idle)
+        {
+            _timer += Time.deltaTime;
+            if (_timer > Random.Range(farmer.MinStandTime, farmer.MaxStandTime))
+            {
+                farmer.SwitchState(farmer.WalkingState);
+            }
+        }
+
+        if (farmer.farmerAction == FarmerActions.Seeding)
         {
             farmer.SwitchState(farmer.WalkingState);
         }
+        
     }
 
     public override void ExitState(FarmerStateManager farmer)
