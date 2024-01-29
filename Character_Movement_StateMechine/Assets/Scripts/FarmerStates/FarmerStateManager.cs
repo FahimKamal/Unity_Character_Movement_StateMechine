@@ -76,6 +76,8 @@ public class FarmerStateManager : MonoBehaviour
     
     public Vector3 FirstDestination => _firstDestination;
     public Vector3 EndDestination => _endDestination;
+    
+    
     public void GoSeeding(Vector3 firstDestination, Vector3 endDestination)
     {
         // isBusy = true;
@@ -101,5 +103,12 @@ public class FarmerStateManager : MonoBehaviour
         farmerAction = FarmerActions.Harvesting;
         _firstDestination = firstDestination;
         _endDestination = endDestination;
+    }
+
+    public void ActionComplete()
+    {
+        farmerAction = FarmerActions.Idle;
+        _firstDestination = Vector3.zero;
+        _endDestination = Vector3.zero;
     }
 }
