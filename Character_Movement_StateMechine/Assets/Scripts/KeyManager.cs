@@ -15,7 +15,7 @@ public static partial class KeyManager
     public const string PickFruit = "PickFruit";
     public const string SeedPickingUp = "SeedPickingUp";
     public const string KneelingDown = "KneelingDown";
-    public const string KneelingUp = "KneelingUp";
+    public const string StandUp = "StandUp";
     public const string Seeding = "Seeding";
     
     public const string IsPatrolling = "isPatrolling";

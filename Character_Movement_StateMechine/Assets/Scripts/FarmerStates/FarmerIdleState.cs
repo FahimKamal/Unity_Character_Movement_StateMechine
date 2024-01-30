@@ -13,7 +13,7 @@ public class FarmerIdleState : FarmerBaseState
         }
         else if (farmer.farmerAction == FarmerActions.Seeding)
         {
-            farmer.SwitchState(farmer.WalkingState);
+            farmer.SwitchState(farmer.walkingState);
         }
     }
 
@@ -24,7 +24,7 @@ public class FarmerIdleState : FarmerBaseState
             _timer += Time.deltaTime;
             if (_timer > Random.Range(farmer.MinStandTime, farmer.MaxStandTime))
             {
-                farmer.SwitchState(farmer.WalkingState);
+                farmer.SwitchState(farmer.walkingState);
             }
         }
         
@@ -34,10 +34,5 @@ public class FarmerIdleState : FarmerBaseState
     {
         _timer = 0;
         Debug.Log("Exiting Idle State");
-    }
-
-    public override void OnTriggerEnter(FarmerStateManager farmer, Collider collider)
-    {
-        
     }
 }

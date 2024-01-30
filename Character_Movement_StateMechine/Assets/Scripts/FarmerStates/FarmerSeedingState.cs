@@ -2,16 +2,13 @@ using UnityEngine;
 
 public class FarmerSeedingState : FarmerBaseState
 {
+    private FarmerStateManager _manager;
     public override void EnterState(FarmerStateManager farmer)
     {
         Debug.Log("Entering Seeding State");
+        _manager = farmer;
         // Play Seeding animation. 
         farmer.animator.Play(KeyManager.Seeding);
-    }
-
-    public override void UpdateState(FarmerStateManager farmer)
-    {
-        
     }
 
     public override void ExitState(FarmerStateManager farmer)
@@ -19,8 +16,8 @@ public class FarmerSeedingState : FarmerBaseState
         Debug.Log("Exiting seeding State");
     }
 
-    public override void OnTriggerEnter(FarmerStateManager farmer, Collider collider)
+    public void SeedingComplete()
     {
-        
+        _manager.SwitchState(_manager.standUpState);
     }
 }

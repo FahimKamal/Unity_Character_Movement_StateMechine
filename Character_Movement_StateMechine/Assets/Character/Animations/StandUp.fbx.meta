@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 037d4630b487de144ac5ab95d51eb99e
+guid: bce86c32587f0a748896c7c45f0a647d
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -33,7 +33,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: KneelingDown
+      name: StandUp
       takeName: mixamo.com
       internalID: -203655887218126122
       firstFrame: 0
@@ -57,8 +57,8 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 1
-        functionName: KneelDownComplete
+      - time: 0
+        functionName: StandUpComplete
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0

@@ -6,7 +6,7 @@ public class FarmerWalkWithBoxState : FarmerBaseState
     {
         Debug.Log("Entering WalkWithBox State");
         farmer.agent.SetDestination(farmer.EndDestination);
-        farmer.animator.Play("WalkingWithBox");
+        farmer.animator.Play(KeyManager.WalkingWithBox);
     }
 
     public override void UpdateState(FarmerStateManager farmer)
@@ -19,13 +19,13 @@ public class FarmerWalkWithBoxState : FarmerBaseState
         Debug.Log("Exiting WalkWithBox State");
     }
 
-    public override void OnTriggerEnter(FarmerStateManager farmer, Collider collider)
+    public override void OnStateTriggerEnter(FarmerStateManager farmer, Collider collider)
     {
         if (collider.CompareTag("Field") && farmer.farmerAction == FarmerActions.Seeding)
         {
             farmer.transform.position = collider.transform.GetChild(0).transform.position;
             farmer.transform.rotation = collider.transform.GetChild(0).transform.rotation;
-            farmer.SwitchState(farmer.SeedingState);
+            farmer.SwitchState(farmer.kneelDownState);
         }
     }
 }

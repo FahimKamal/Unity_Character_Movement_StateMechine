@@ -17,7 +17,7 @@ public class FarmerHarvestingState : FarmerBaseState
         Debug.Log("Exiting Harvesting State");
     }
 
-    public override void OnTriggerEnter(FarmerStateManager farmer, Collider collider)
+    public override void OnStateTriggerEnter(FarmerStateManager farmer, Collider collider)
     {
         
     }
