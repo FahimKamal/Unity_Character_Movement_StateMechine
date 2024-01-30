@@ -5,7 +5,7 @@ public class FarmerWalkState : FarmerBaseState
     public override void EnterState(FarmerStateManager farmer)
     {
         Debug.Log("Entering Walk State");
-        farmer.animator.Play("Walking");
+        farmer.animator.Play(KeyManager.Walking);
         if (farmer.farmerAction == FarmerActions.Idle)
         {
             farmer.agent.SetDestination(farmer.wayPoints.WayPointList[Random.Range(0, farmer.wayPoints.WayPointList.Count)].position);

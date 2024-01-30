@@ -6,7 +6,7 @@ public class FarmerIdleState : FarmerBaseState
     public override void EnterState(FarmerStateManager farmer)
     {
         Debug.Log("Entering Idle State");
-        farmer.animator.Play("Idle");
+        farmer.animator.Play(KeyManager.Idle);
         _timer = 0;
     }
 

@@ -45,6 +45,8 @@ public class FarmerStateManager : MonoBehaviour
 
     public Transform Field;
     public Transform Inventory;
+    
+    private  bool _isBusy = false;
 
     // Start is called before the first frame update
     private void Start()
@@ -81,7 +83,11 @@ public class FarmerStateManager : MonoBehaviour
     [Button]
     public void GoSeeding(Vector3 firstDestination, Vector3 endDestination)
     {
-        // isBusy = true;
+        if (_isBusy)
+        {
+            return;
+        }
+        _isBusy = true;
         // seeding = true;
         farmerAction = FarmerActions.Seeding;
         // _firstDestination = firstDestination;
@@ -91,7 +97,11 @@ public class FarmerStateManager : MonoBehaviour
 
     public void GoWatering(Vector3 firstDestination, Vector3 endDestination)
     {
-        // isBusy = true;
+        if (_isBusy)
+        {
+            return;
+        }
+        _isBusy = true;
         // watering = true;
         farmerAction = FarmerActions.Watering;
         _firstDestination = firstDestination;
@@ -100,7 +110,11 @@ public class FarmerStateManager : MonoBehaviour
 
     public void GoHarvesting(Vector3 firstDestination, Vector3 endDestination)
     {
-        // isBusy = true;
+        if (_isBusy)
+        {
+            return;
+        }
+        _isBusy = true;
         // harvesting = true;
         farmerAction = FarmerActions.Harvesting;
         _firstDestination = firstDestination;
@@ -110,6 +124,7 @@ public class FarmerStateManager : MonoBehaviour
     [Button]
     public void ActionComplete()
     {
+        _isBusy = false;
         farmerAction = FarmerActions.Idle;
         _firstDestination = Vector3.zero;
         _endDestination = Vector3.zero;
