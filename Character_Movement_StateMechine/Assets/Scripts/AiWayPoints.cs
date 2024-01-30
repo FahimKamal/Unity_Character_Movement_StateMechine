@@ -6,11 +6,7 @@ public class AiWayPoints : MonoBehaviour
 {
     [SerializeField] private List<Transform> wayPoints;
 
-    public List<Transform> WayPointList
-    {
-        get => wayPoints;
-        private set => wayPoints = value;
-    }
+    public List<Transform> WayPointList => wayPoints;
 
     private void Awake()
     {
@@ -26,6 +22,7 @@ public class AiWayPoints : MonoBehaviour
         }
     }
 
+#if UNITY_EDITOR
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
@@ -34,7 +31,7 @@ public class AiWayPoints : MonoBehaviour
             Gizmos.DrawWireSphere(wayPoint.position, 0.5f);
         }
     }
-    
+#endif
     
 } // class
 
