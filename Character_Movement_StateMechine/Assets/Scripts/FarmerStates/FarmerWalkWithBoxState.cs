@@ -11,10 +11,7 @@ public class FarmerWalkWithBoxState : FarmerBaseState
 
     public override void UpdateState(FarmerStateManager farmer)
     {
-        if (farmer.agent.remainingDistance <= farmer.agent.stoppingDistance && farmer.farmerAction == FarmerActions.Seeding)
-        {
-            farmer.SwitchState(farmer.SeedingState);
-        }
+        
     }
 
     public override void ExitState(FarmerStateManager farmer)
@@ -24,6 +21,11 @@ public class FarmerWalkWithBoxState : FarmerBaseState
 
     public override void OnTriggerEnter(FarmerStateManager farmer, Collider collider)
     {
-        
+        if (collider.CompareTag("Field") && farmer.farmerAction == FarmerActions.Seeding)
+        {
+            farmer.transform.position = collider.transform.GetChild(0).transform.position;
+            farmer.transform.rotation = collider.transform.GetChild(0).transform.rotation;
+            farmer.SwitchState(farmer.SeedingState);
+        }
     }
 }

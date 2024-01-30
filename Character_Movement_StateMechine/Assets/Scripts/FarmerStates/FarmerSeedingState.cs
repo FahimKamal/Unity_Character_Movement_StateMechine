@@ -6,13 +6,12 @@ public class FarmerSeedingState : FarmerBaseState
     {
         Debug.Log("Entering Seeding State");
         // Play Seeding animation. 
+        farmer.animator.Play(KeyManager.Seeding);
     }
 
     public override void UpdateState(FarmerStateManager farmer)
     {
-        // check if animation playing done or not. if Done action is done.
-        farmer.ActionComplete();
-        farmer.SwitchState(farmer.IdleState);
+        
     }
 
     public override void ExitState(FarmerStateManager farmer)

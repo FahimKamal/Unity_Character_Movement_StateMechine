@@ -3,13 +3,6 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Serialization;
 
-public enum FarmerActions
-{
-    Idle,
-    Seeding,
-    Watering,
-    Harvesting,
-}
 public class FarmerStateManager : MonoBehaviour
 {
     public FarmerActions farmerAction;
@@ -27,15 +20,16 @@ public class FarmerStateManager : MonoBehaviour
     public FarmerBaseState CurrentState;
     public FarmerIdleState IdleState = new FarmerIdleState();
     public FarmerWalkState WalkingState = new FarmerWalkState();
+    public FarmerboxPickupState BoxPickupState = new FarmerboxPickupState();
     public FarmerWalkWithBoxState WalkWithBoxState = new FarmerWalkWithBoxState();
+    public FarmerSeedingState SeedingState = new FarmerSeedingState();
     public FarmerHarvestingState HarvestingState = new FarmerHarvestingState();
     public FarmerWateringState WateringState = new FarmerWateringState();
     public FarmerPlantingState PlantingState = new FarmerPlantingState();
-    public FarmerboxPickupState BoxPickupState = new FarmerboxPickupState();
-    public FarmerSeedingState SeedingState = new FarmerSeedingState();
 
     public NavMeshAgent agent;
     public Animator animator;
+    public Animation Animation;
     public AiWayPoints wayPoints;
     
     private Vector3 _firstDestination;
@@ -92,6 +86,20 @@ public class FarmerStateManager : MonoBehaviour
         farmerAction = FarmerActions.Seeding;
         // _firstDestination = firstDestination;
         // _endDestination = endDestination;
+        _firstDestination = Inventory.position;
+        _endDestination = Field.position;
+        SwitchState(IdleState);
+    }
+    
+    public void PickupComplete()
+    {
+        Debug.Log("pickup complete");
+        SwitchState(WalkWithBoxState);
+    }
+
+    public void SeedingComplete()
+    {
+        ActionComplete();
         SwitchState(IdleState);
     }
 
@@ -129,4 +137,12 @@ public class FarmerStateManager : MonoBehaviour
         _firstDestination = Vector3.zero;
         _endDestination = Vector3.zero;
     }
+}
+
+public enum FarmerActions
+{
+    Idle,
+    Seeding,
+    Watering,
+    Harvesting,
 }

@@ -5,6 +5,7 @@ public class FarmerWalkState : FarmerBaseState
     public override void EnterState(FarmerStateManager farmer)
     {
         Debug.Log("Entering Walk State");
+        farmer.animator.StopPlayback();
         farmer.animator.Play(KeyManager.Walking);
         if (farmer.farmerAction == FarmerActions.Idle)
         {
@@ -32,9 +33,11 @@ public class FarmerWalkState : FarmerBaseState
 
     public override void OnTriggerEnter(FarmerStateManager farmer, Collider collider)
     {
-        // if (collider.CompareTag("Inventory"))
-        // {
+        if (collider.CompareTag("Inventory") && farmer.farmerAction == FarmerActions.Seeding)
+        {
+            farmer.transform.position = collider.transform.GetChild(0).transform.position;
+            farmer.transform.rotation = collider.transform.GetChild(0).transform.rotation;
             farmer.SwitchState(farmer.BoxPickupState);
-        // }
+        }
     }
 }

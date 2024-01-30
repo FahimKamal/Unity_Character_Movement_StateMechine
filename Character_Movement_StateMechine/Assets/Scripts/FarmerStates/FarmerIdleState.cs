@@ -6,8 +6,15 @@ public class FarmerIdleState : FarmerBaseState
     public override void EnterState(FarmerStateManager farmer)
     {
         Debug.Log("Entering Idle State");
-        farmer.animator.Play(KeyManager.Idle);
-        _timer = 0;
+        if (farmer.farmerAction == FarmerActions.Idle)
+        {
+            farmer.animator.Play(KeyManager.Idle);
+            _timer = 0;
+        }
+        else if (farmer.farmerAction == FarmerActions.Seeding)
+        {
+            farmer.SwitchState(farmer.WalkingState);
+        }
     }
 
     public override void UpdateState(FarmerStateManager farmer)
@@ -19,11 +26,6 @@ public class FarmerIdleState : FarmerBaseState
             {
                 farmer.SwitchState(farmer.WalkingState);
             }
-        }
-
-        if (farmer.farmerAction == FarmerActions.Seeding)
-        {
-            farmer.SwitchState(farmer.WalkingState);
         }
         
     }
