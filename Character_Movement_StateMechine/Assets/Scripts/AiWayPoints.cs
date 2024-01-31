@@ -21,17 +21,6 @@ public class AiWayPoints : MonoBehaviour
             WayPointList.Add(t);
         }
     }
-
-#if UNITY_EDITOR
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        foreach (var wayPoint in WayPointList)
-        {
-            Gizmos.DrawWireSphere(wayPoint.position, 0.5f);
-        }
-    }
-#endif
     
 } // class
 

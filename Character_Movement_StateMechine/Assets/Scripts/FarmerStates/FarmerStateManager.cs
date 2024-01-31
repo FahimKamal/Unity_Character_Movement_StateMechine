@@ -93,10 +93,10 @@ public class FarmerStateManager : MonoBehaviour
     }
     
     [Button]
-    public void GoSeeding(Vector3 firstDestination, Vector3 endDestination)
+    public bool GoSeeding(Vector3 firstDestination, Vector3 endDestination)
     {
         if (_isBusy)
-            return;
+            return false;
         
         _isBusy = true;
         farmerAction = FarmerActions.Seeding;
@@ -105,28 +105,33 @@ public class FarmerStateManager : MonoBehaviour
         _firstDestination = inventory.position;
         _endDestination = field.position;
         SwitchState(idleState);
+        return true;
     }
 
-    public void GoWatering(Vector3 firstDestination, Vector3 endDestination)
+    public bool GoWatering(Vector3 firstDestination, Vector3 endDestination)
     {
         if (_isBusy)
-            return;
+            return false;
         
         _isBusy = true;
         farmerAction = FarmerActions.Watering;
         _firstDestination = firstDestination;
         _endDestination = endDestination;
+
+        return true;
     }
 
-    public void GoHarvesting(Vector3 firstDestination, Vector3 endDestination)
+    public bool GoHarvesting(Vector3 firstDestination, Vector3 endDestination)
     {
         if (_isBusy)
-            return;
+            return false;
         
         _isBusy = true;
         farmerAction = FarmerActions.Harvesting;
         _firstDestination = firstDestination;
         _endDestination = endDestination;
+
+        return true;
     }
 
     [Button]
