@@ -8,10 +8,13 @@ public class FarmerIdleState : FarmerBaseState
         Debug.Log("Entering Idle State");
         if (farmer.farmerAction == FarmerActions.Idle)
         {
-            farmer.animator.Play(KeyManager.Idle);
+            farmer.PlayAnimation(KeyManager.Idle);
             _timer = 0;
         }
         else if (farmer.farmerAction == FarmerActions.Seeding)
+        {
+            farmer.SwitchState(farmer.walkingState);
+        }else if (farmer.farmerAction == FarmerActions.Watering)
         {
             farmer.SwitchState(farmer.walkingState);
         }

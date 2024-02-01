@@ -6,7 +6,7 @@ public class FarmerWalkWithBoxState : FarmerBaseState
     {
         Debug.Log("Entering WalkWithBox State");
         farmer.agent.SetDestination(farmer.EndDestination);
-        farmer.animator.Play(KeyManager.WalkingWithBox);
+        farmer.PlayAnimation(KeyManager.WalkingWithBox);
     }
 
     public override void UpdateState(FarmerStateManager farmer)

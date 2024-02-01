@@ -7,7 +7,7 @@ public class FarmerBoxPickupState : FarmerBaseState
     {
         Debug.Log("Entering box pickup state");
         _manager = farmer;
-        farmer.animator.Play(KeyManager.SeedPickingUp);
+        farmer.PlayAnimation(KeyManager.SeedPickingUp);
         // Play box pickup animation. 
     }
 

@@ -7,7 +7,7 @@ public class FarmerKneelDownState : FarmerBaseState
     {
         Debug.Log("Entering Kneel Down State");
         _manager = farmer;
-        farmer.animator.Play(KeyManager.KneelingDown);
+        farmer.PlayAnimation(KeyManager.KneelingDown);
     }
 
     public override void ExitState(FarmerStateManager farmer)

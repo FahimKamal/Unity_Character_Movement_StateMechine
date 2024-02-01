@@ -8,7 +8,7 @@ public class FarmerSeedingState : FarmerBaseState
         Debug.Log("Entering Seeding State");
         _manager = farmer;
         // Play Seeding animation. 
-        farmer.animator.Play(KeyManager.Seeding);
+        farmer.PlayAnimation(KeyManager.Seeding);
     }
 
     public override void ExitState(FarmerStateManager farmer)

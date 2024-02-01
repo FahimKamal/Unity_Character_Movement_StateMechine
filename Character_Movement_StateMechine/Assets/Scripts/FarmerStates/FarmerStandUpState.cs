@@ -7,7 +7,7 @@ public class FarmerStandUpState : FarmerBaseState
     {
         Debug.Log("Entering StandUp State");
         _manager = farmer;
-        farmer.animator.Play(KeyManager.StandUp);
+        farmer.PlayAnimation(KeyManager.StandUp);
     }
 
     public override void ExitState(FarmerStateManager farmer)

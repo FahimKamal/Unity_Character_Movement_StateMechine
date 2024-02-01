@@ -1,6 +1,7 @@
 using TriInspector;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.PlayerLoop;
 using UnityEngine.Serialization;
 
 public enum FarmerActions
@@ -60,9 +61,9 @@ public class FarmerStateManager : MonoBehaviour
         kneelDownState = GetComponent<FarmerKneelDownState>();
         seedingState = GetComponent<FarmerSeedingState>();
         standUpState = GetComponent<FarmerStandUpState>();
-        harvestingState = GetComponent<FarmerHarvestingState>();
         wateringState = GetComponent<FarmerWateringState>();
-        
+        harvestingState = GetComponent<FarmerHarvestingState>();
+
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
         
@@ -108,6 +109,7 @@ public class FarmerStateManager : MonoBehaviour
         return true;
     }
 
+    [Button]
     public bool GoWatering(Vector3 firstDestination, Vector3 endDestination)
     {
         if (_isBusy)
@@ -115,9 +117,12 @@ public class FarmerStateManager : MonoBehaviour
         
         _isBusy = true;
         farmerAction = FarmerActions.Watering;
-        _firstDestination = firstDestination;
-        _endDestination = endDestination;
-
+        // _firstDestination = firstDestination;
+        // _endDestination = endDestination;
+        // _firstDestination = inventory.position;
+        _firstDestination = field.position;
+        SwitchState(idleState);
+        
         return true;
     }
 
@@ -132,6 +137,18 @@ public class FarmerStateManager : MonoBehaviour
         _endDestination = endDestination;
 
         return true;
+    }
+
+    private string _currentAnimState = KeyManager.Idle;
+    public void PlayAnimation(string newState)
+    {
+        if (_currentAnimState == newState)
+        {
+            return;
+        }
+        _currentAnimState = newState;
+        animator.CrossFade(newState, 0.05f);
+        // animator.Play(animationName);
     }
 
     [Button]

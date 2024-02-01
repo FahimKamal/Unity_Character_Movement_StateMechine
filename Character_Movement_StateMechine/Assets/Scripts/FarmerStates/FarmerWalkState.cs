@@ -5,14 +5,18 @@ public class FarmerWalkState : FarmerBaseState
     public override void EnterState(FarmerStateManager farmer)
     {
         Debug.Log("Entering Walk State");
-        farmer.animator.StopPlayback();
-        farmer.animator.Play(KeyManager.Walking);
+        farmer.PlayAnimation(KeyManager.Walking);
         if (farmer.farmerAction == FarmerActions.Idle)
         {
             farmer.agent.SetDestination(farmer.wayPoints.WayPointList[Random.Range(0, farmer.wayPoints.WayPointList.Count)].position);
         }
 
         if (farmer.farmerAction == FarmerActions.Seeding)
+        {
+            farmer.agent.SetDestination(farmer.FirstDestination);
+        }
+
+        if (farmer.farmerAction == FarmerActions.Watering)
         {
             farmer.agent.SetDestination(farmer.FirstDestination);
         }
@@ -38,6 +42,13 @@ public class FarmerWalkState : FarmerBaseState
             farmer.transform.position = collider.transform.GetChild(0).transform.position;
             farmer.transform.rotation = collider.transform.GetChild(0).transform.rotation;
             farmer.SwitchState(farmer.boxPickupState);
+        }
+
+        if (collider.CompareTag("Field") && farmer.farmerAction == FarmerActions.Watering)
+        {
+            farmer.transform.position = collider.transform.GetChild(0).transform.position;
+            farmer.transform.rotation = collider.transform.GetChild(0).transform.rotation;
+            farmer.SwitchState(farmer.wateringState);
         }
     }
 }
