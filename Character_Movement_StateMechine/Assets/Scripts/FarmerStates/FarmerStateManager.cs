@@ -4,7 +4,7 @@ using UnityEngine.AI;
 
 public enum FarmerActions
 {
-    Idle, Seeding, Watering, Harvesting,
+    Idle, Seeding, Watering, Harvesting, Building
 }
 
 public class FarmerStateManager : MonoBehaviour
@@ -22,16 +22,17 @@ public class FarmerStateManager : MonoBehaviour
     public float MinWalkTime => minWalkTime;
 
     private FarmerBaseState _currentState;
-    [HideInInspector] public FarmerIdleState idleState;
-    [HideInInspector] public FarmerWalkState walkingState;
-    [HideInInspector] public FarmerBoxPickupState boxPickupState; 
+    [HideInInspector] public FarmerIdleState        idleState;
+    [HideInInspector] public FarmerWalkState        walkingState;
+    [HideInInspector] public FarmerBoxPickupState   boxPickupState; 
     [HideInInspector] public FarmerWalkWithBoxState walkWithBoxState;
-    [HideInInspector] public FarmerKneelDownState kneelDownState;
-    [HideInInspector] public FarmerSeedingState seedingState;
-    [HideInInspector] public FarmerStandUpState standUpState;
-    [HideInInspector] public FarmerHarvestingState harvestingState;
-    [HideInInspector] public FarmerWateringState wateringState;
-    [HideInInspector] public FarmerBoxDropDownState BoxDropDownState;
+    [HideInInspector] public FarmerKneelDownState   kneelDownState;
+    [HideInInspector] public FarmerSeedingState     seedingState;
+    [HideInInspector] public FarmerStandUpState     standUpState;
+    [HideInInspector] public FarmerHarvestingState  harvestingState;
+    [HideInInspector] public FarmerWateringState    wateringState;
+    [HideInInspector] public FarmerBoxDropDownState boxDropDownState;
+    [HideInInspector] public FarmerBuildingState    buildingState;
 
     public NavMeshAgent agent;
     public Animator animator;
@@ -46,25 +47,27 @@ public class FarmerStateManager : MonoBehaviour
     public Transform inventory;
     
     private  bool _isBusy;
-    private string _currentAnimState = KeyManager.Idle;
+    [SerializeField] private string _currentAnimState = KeyManager.Idle;
 
     // Start is called before the first frame update
     private void Start()
     {
-        idleState = GetComponent<FarmerIdleState>();
-        walkingState = GetComponent<FarmerWalkState>();
-        boxPickupState = GetComponent<FarmerBoxPickupState>();
-        walkWithBoxState = GetComponent<FarmerWalkWithBoxState>();
-        kneelDownState = GetComponent<FarmerKneelDownState>();
-        seedingState = GetComponent<FarmerSeedingState>();
-        standUpState = GetComponent<FarmerStandUpState>();
-        wateringState = GetComponent<FarmerWateringState>();
-        harvestingState = GetComponent<FarmerHarvestingState>();
-        BoxDropDownState = GetComponent<FarmerBoxDropDownState>();
-
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
         
+        idleState        = GetComponent<FarmerIdleState>();
+        walkingState     = GetComponent<FarmerWalkState>();
+        boxPickupState   = GetComponent<FarmerBoxPickupState>();
+        walkWithBoxState = GetComponent<FarmerWalkWithBoxState>();
+        kneelDownState   = GetComponent<FarmerKneelDownState>();
+        seedingState     = GetComponent<FarmerSeedingState>();
+        standUpState     = GetComponent<FarmerStandUpState>();
+        wateringState    = GetComponent<FarmerWateringState>();
+        harvestingState  = GetComponent<FarmerHarvestingState>();
+        boxDropDownState = GetComponent<FarmerBoxDropDownState>();
+        buildingState    = GetComponent<FarmerBuildingState>();
+
+
         _firstDestination = inventory.position;
         _endDestination = field.position;
 
@@ -79,6 +82,11 @@ public class FarmerStateManager : MonoBehaviour
         _currentState.UpdateState(this);
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        _currentState.OnStateTriggerEnter(this, other);
+    }
+
     public void SwitchState(FarmerBaseState state)
     {
         _currentState.ExitState(this);
@@ -86,11 +94,6 @@ public class FarmerStateManager : MonoBehaviour
         _currentState.EnterState(this);
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        _currentState.OnStateTriggerEnter(this, other);
-    }
-    
     [Button]
     public bool GoSeeding(Vector3 firstDestination, Vector3 endDestination)
     {
@@ -139,6 +142,22 @@ public class FarmerStateManager : MonoBehaviour
         return true;
     }
 
+    [Button]
+    public bool GoBuilding(Vector3 firstDestination, float buildingTime)
+    {
+        if (_isBusy)
+            return false;
+
+        _isBusy = true;
+        farmerAction = FarmerActions.Building;
+        buildingState.buildingTime = buildingTime;
+        // _firstDestination = firstDestination;
+        _firstDestination = field.position;
+        SwitchState(idleState);
+
+        return true; 
+    }
+
     
     public void PlayAnimation(string newState)
     {
@@ -156,5 +175,10 @@ public class FarmerStateManager : MonoBehaviour
         _firstDestination = Vector3.zero;
         _endDestination = Vector3.zero;
         SwitchState(idleState);
+    }
+
+    public void SetPositionAndRotation(Transform target)
+    {
+        transform.SetPositionAndRotation(target.position, target.rotation);
     }
 }

@@ -17,6 +17,14 @@ public class FarmerKneelDownState : FarmerBaseState
 
     public void KneelDownComplete()
     {
-        _manager.SwitchState(_manager.seedingState);
+        if (_manager.farmerAction == FarmerActions.Seeding)
+        {
+            _manager.SwitchState(_manager.seedingState);
+        }
+
+        if (_manager.farmerAction == FarmerActions.Building)
+        {
+            _manager.SwitchState(_manager.buildingState);
+        }
     }
 }

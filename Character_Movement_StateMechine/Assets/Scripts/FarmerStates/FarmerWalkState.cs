@@ -33,22 +33,25 @@ public class FarmerWalkState : FarmerBaseState
     {
         if (collider.CompareTag(KeyManager.TagInventory) && farmer.farmerAction == FarmerActions.Seeding)
         {
-            farmer.transform.position = collider.transform.GetChild(0).transform.position;
-            farmer.transform.rotation = collider.transform.GetChild(0).transform.rotation;
+            farmer.SetPositionAndRotation(collider.transform.GetChild(0).transform);
+            
             farmer.SwitchState(farmer.boxPickupState);
         }
 
         if (collider.CompareTag(KeyManager.TagField) && farmer.farmerAction == FarmerActions.Watering)
         {
-            farmer.transform.position = collider.transform.GetChild(0).transform.position;
-            farmer.transform.rotation = collider.transform.GetChild(0).transform.rotation;
+            farmer.SetPositionAndRotation(collider.transform.GetChild(0).transform);
             farmer.SwitchState(farmer.wateringState);
         }
         if (collider.CompareTag(KeyManager.TagField) && farmer.farmerAction == FarmerActions.Harvesting)
         {
-            farmer.transform.position = collider.transform.GetChild(0).transform.position;
-            farmer.transform.rotation = collider.transform.GetChild(0).transform.rotation;
+            farmer.SetPositionAndRotation(collider.transform.GetChild(0).transform);
             farmer.SwitchState(farmer.harvestingState);
+        }
+        if (collider.CompareTag(KeyManager.TagField) && farmer.farmerAction == FarmerActions.Building)
+        {
+            farmer.SetPositionAndRotation(collider.transform.GetChild(0).transform);
+            farmer.SwitchState(farmer.kneelDownState);
         }
     }
 }

@@ -14,6 +14,7 @@ public static partial class KeyManager
     public const string Seeding = "Seeding";
     public const string DropDown = "DropDown";
     public const string DropUp = "DropUp";
+    public const string Building = "Building";
     
     public const string TagInventory = "Inventory";
     public const string TagField = "Field";

@@ -23,17 +23,15 @@ public class FarmerWalkWithBoxState : FarmerBaseState
     {
         if (collider.CompareTag(KeyManager.TagField) && farmer.farmerAction == FarmerActions.Seeding)
         {
-            var standTransform = collider.transform.GetChild(0).transform;
-            farmer.transform.SetPositionAndRotation(standTransform.position, standTransform.rotation);
+            farmer.SetPositionAndRotation(collider.transform.GetChild(0).transform);
             farmer.SwitchState(farmer.kneelDownState);
             return;
         }
 
         if (collider.CompareTag(KeyManager.TagInventory) && farmer.farmerAction == FarmerActions.Harvesting)
         {
-            var standTransform = collider.transform.GetChild(0).transform;
-            farmer.transform.SetPositionAndRotation(standTransform.position, standTransform.rotation);
-            farmer.SwitchState(farmer.BoxDropDownState);
+            farmer.SetPositionAndRotation(collider.transform.GetChild(0).transform);
+            farmer.SwitchState(farmer.boxDropDownState);
         }
     }
 }
