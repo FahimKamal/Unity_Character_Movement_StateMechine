@@ -50,6 +50,7 @@ public class FarmerStateManager : MonoBehaviour
     public Transform inventory;
     
     private  bool _isBusy;
+    private string _currentAnimState = KeyManager.Idle;
 
     // Start is called before the first frame update
     private void Start()
@@ -139,7 +140,7 @@ public class FarmerStateManager : MonoBehaviour
         return true;
     }
 
-    private string _currentAnimState = KeyManager.Idle;
+    
     public void PlayAnimation(string newState)
     {
         if (_currentAnimState == newState)
@@ -148,7 +149,6 @@ public class FarmerStateManager : MonoBehaviour
         }
         _currentAnimState = newState;
         animator.CrossFade(newState, 0.05f);
-        // animator.Play(animationName);
     }
 
     [Button]
