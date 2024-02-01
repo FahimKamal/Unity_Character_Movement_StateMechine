@@ -34,10 +34,8 @@ public class FarmerWalkState : FarmerBaseState
         if (collider.CompareTag(KeyManager.TagInventory) && farmer.farmerAction == FarmerActions.Seeding)
         {
             farmer.SetPositionAndRotation(collider.transform.GetChild(0).transform);
-            
             farmer.SwitchState(farmer.boxPickupState);
         }
-
         if (collider.CompareTag(KeyManager.TagField) && farmer.farmerAction == FarmerActions.Watering)
         {
             farmer.SetPositionAndRotation(collider.transform.GetChild(0).transform);

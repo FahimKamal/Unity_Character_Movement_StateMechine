@@ -35,13 +35,13 @@ public class FarmerStateManager : MonoBehaviour
     [HideInInspector] public FarmerBuildingState    buildingState;
 
     public NavMeshAgent agent;
-    public Animator animator;
-    public AiWayPoints wayPoints;
+    public Animator     animator;
+    public AiWayPoints  wayPoints;
     
     private Vector3 _firstDestination;
     private Vector3 _endDestination;
     public Vector3 FirstDestination => _firstDestination;
-    public Vector3 EndDestination => _endDestination;
+    public Vector3 EndDestination   => _endDestination;
 
     public Transform field;
     public Transform inventory;
@@ -52,7 +52,7 @@ public class FarmerStateManager : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        agent = GetComponent<NavMeshAgent>();
+        agent    = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
         
         idleState        = GetComponent<FarmerIdleState>();
@@ -69,9 +69,9 @@ public class FarmerStateManager : MonoBehaviour
 
 
         _firstDestination = inventory.position;
-        _endDestination = field.position;
+        _endDestination   = field.position;
 
-        farmerAction = FarmerActions.Idle;
+        farmerAction  = FarmerActions.Idle;
         _currentState = idleState;
         _currentState.EnterState(this);
     }
@@ -173,8 +173,8 @@ public class FarmerStateManager : MonoBehaviour
         _isBusy = false;
         farmerAction = FarmerActions.Idle;
         _firstDestination = Vector3.zero;
-        _endDestination = Vector3.zero;
-        SwitchState(idleState);
+        _endDestination   = Vector3.zero;
+        SwitchState(walkingState);
     }
 
     public void SetPositionAndRotation(Transform target)

@@ -9,7 +9,6 @@ public class FarmerIdleState : FarmerBaseState
         if (farmer.farmerAction == FarmerActions.Idle)
         {
             farmer.PlayAnimation(KeyManager.Idle);
-            _timer = 0;
         }
         else 
         {
