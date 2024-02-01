@@ -18,6 +18,5 @@ public class FarmerStandUpState : FarmerBaseState
     public void StandUpComplete()
     {
         _manager.ActionComplete();
-        _manager.SwitchState(_manager.idleState);
     }
 }

@@ -10,13 +10,7 @@ public class FarmerWalkState : FarmerBaseState
         {
             farmer.agent.SetDestination(farmer.wayPoints.WayPointList[Random.Range(0, farmer.wayPoints.WayPointList.Count)].position);
         }
-
-        if (farmer.farmerAction == FarmerActions.Seeding)
-        {
-            farmer.agent.SetDestination(farmer.FirstDestination);
-        }
-
-        if (farmer.farmerAction == FarmerActions.Watering)
+        else
         {
             farmer.agent.SetDestination(farmer.FirstDestination);
         }
@@ -37,18 +31,24 @@ public class FarmerWalkState : FarmerBaseState
 
     public override void OnStateTriggerEnter(FarmerStateManager farmer, Collider collider)
     {
-        if (collider.CompareTag("Inventory") && farmer.farmerAction == FarmerActions.Seeding)
+        if (collider.CompareTag(KeyManager.TagInventory) && farmer.farmerAction == FarmerActions.Seeding)
         {
             farmer.transform.position = collider.transform.GetChild(0).transform.position;
             farmer.transform.rotation = collider.transform.GetChild(0).transform.rotation;
             farmer.SwitchState(farmer.boxPickupState);
         }
 
-        if (collider.CompareTag("Field") && farmer.farmerAction == FarmerActions.Watering)
+        if (collider.CompareTag(KeyManager.TagField) && farmer.farmerAction == FarmerActions.Watering)
         {
             farmer.transform.position = collider.transform.GetChild(0).transform.position;
             farmer.transform.rotation = collider.transform.GetChild(0).transform.rotation;
             farmer.SwitchState(farmer.wateringState);
+        }
+        if (collider.CompareTag(KeyManager.TagField) && farmer.farmerAction == FarmerActions.Harvesting)
+        {
+            farmer.transform.position = collider.transform.GetChild(0).transform.position;
+            farmer.transform.rotation = collider.transform.GetChild(0).transform.rotation;
+            farmer.SwitchState(farmer.harvestingState);
         }
     }
 }

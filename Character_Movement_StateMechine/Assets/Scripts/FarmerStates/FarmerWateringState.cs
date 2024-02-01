@@ -19,7 +19,6 @@ public class FarmerWateringState : FarmerBaseState
     {
         Debug.Log("Watering Complete");
         _manager.ActionComplete();
-        _manager.SwitchState(_manager.idleState);
         
     }
 }

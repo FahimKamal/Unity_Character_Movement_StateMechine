@@ -21,11 +21,19 @@ public class FarmerWalkWithBoxState : FarmerBaseState
 
     public override void OnStateTriggerEnter(FarmerStateManager farmer, Collider collider)
     {
-        if (collider.CompareTag("Field") && farmer.farmerAction == FarmerActions.Seeding)
+        if (collider.CompareTag(KeyManager.TagField) && farmer.farmerAction == FarmerActions.Seeding)
         {
-            farmer.transform.position = collider.transform.GetChild(0).transform.position;
-            farmer.transform.rotation = collider.transform.GetChild(0).transform.rotation;
+            var standTransform = collider.transform.GetChild(0).transform;
+            farmer.transform.SetPositionAndRotation(standTransform.position, standTransform.rotation);
             farmer.SwitchState(farmer.kneelDownState);
+            return;
+        }
+
+        if (collider.CompareTag(KeyManager.TagInventory) && farmer.farmerAction == FarmerActions.Harvesting)
+        {
+            var standTransform = collider.transform.GetChild(0).transform;
+            farmer.transform.SetPositionAndRotation(standTransform.position, standTransform.rotation);
+            farmer.SwitchState(farmer.BoxDropDownState);
         }
     }
 }

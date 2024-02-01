@@ -1,15 +1,10 @@
 using TriInspector;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.PlayerLoop;
-using UnityEngine.Serialization;
 
 public enum FarmerActions
 {
-    Idle,
-    Seeding,
-    Watering,
-    Harvesting,
+    Idle, Seeding, Watering, Harvesting,
 }
 
 public class FarmerStateManager : MonoBehaviour
@@ -36,6 +31,7 @@ public class FarmerStateManager : MonoBehaviour
     [HideInInspector] public FarmerStandUpState standUpState;
     [HideInInspector] public FarmerHarvestingState harvestingState;
     [HideInInspector] public FarmerWateringState wateringState;
+    [HideInInspector] public FarmerBoxDropDownState BoxDropDownState;
 
     public NavMeshAgent agent;
     public Animator animator;
@@ -64,6 +60,7 @@ public class FarmerStateManager : MonoBehaviour
         standUpState = GetComponent<FarmerStandUpState>();
         wateringState = GetComponent<FarmerWateringState>();
         harvestingState = GetComponent<FarmerHarvestingState>();
+        BoxDropDownState = GetComponent<FarmerBoxDropDownState>();
 
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
@@ -111,7 +108,7 @@ public class FarmerStateManager : MonoBehaviour
     }
 
     [Button]
-    public bool GoWatering(Vector3 firstDestination, Vector3 endDestination)
+    public bool GoWatering(Vector3 firstDestination)
     {
         if (_isBusy)
             return false;
@@ -119,14 +116,13 @@ public class FarmerStateManager : MonoBehaviour
         _isBusy = true;
         farmerAction = FarmerActions.Watering;
         // _firstDestination = firstDestination;
-        // _endDestination = endDestination;
-        // _firstDestination = inventory.position;
         _firstDestination = field.position;
         SwitchState(idleState);
         
         return true;
     }
 
+    [Button]
     public bool GoHarvesting(Vector3 firstDestination, Vector3 endDestination)
     {
         if (_isBusy)
@@ -134,8 +130,11 @@ public class FarmerStateManager : MonoBehaviour
         
         _isBusy = true;
         farmerAction = FarmerActions.Harvesting;
-        _firstDestination = firstDestination;
-        _endDestination = endDestination;
+        // _firstDestination = firstDestination;
+        // _endDestination = endDestination;
+        _firstDestination = field.position;
+        _endDestination = inventory.position;
+        SwitchState(idleState);
 
         return true;
     }
@@ -143,12 +142,10 @@ public class FarmerStateManager : MonoBehaviour
     
     public void PlayAnimation(string newState)
     {
-        if (_currentAnimState == newState)
-        {
-            return;
-        }
+        if (_currentAnimState == newState) return;
+        
         _currentAnimState = newState;
-        animator.CrossFade(newState, 0.05f);
+        animator.CrossFade(newState, 0.08f);
     }
 
     [Button]
@@ -158,5 +155,6 @@ public class FarmerStateManager : MonoBehaviour
         farmerAction = FarmerActions.Idle;
         _firstDestination = Vector3.zero;
         _endDestination = Vector3.zero;
+        SwitchState(idleState);
     }
 }
