@@ -1106,7 +1106,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   farmerAction: 0
   maxStandTime: 7
-  minStandTime: 5
+  minStandTime: 2
   maxWalkTime: 19
   minWalkTime: 9
   idleState: {fileID: 0}
@@ -1125,6 +1125,7 @@ MonoBehaviour:
   wayPoints: {fileID: 0}
   field: {fileID: 0}
   inventory: {fileID: 0}
+  _currentAnimState: Idle
 --- !u!114 &829427845080192781
 MonoBehaviour:
   m_ObjectHideFlags: 0
