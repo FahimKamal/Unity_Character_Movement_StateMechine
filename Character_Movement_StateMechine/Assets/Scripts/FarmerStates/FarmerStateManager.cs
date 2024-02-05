@@ -4,7 +4,7 @@ using UnityEngine.AI;
 
 public enum FarmerActions
 {
-    Idle, Seeding, Watering, Harvesting, Building
+    Idle, Seeding, Watering, Harvesting, Building, Carry, CuttingTree
 }
 
 public class FarmerStateManager : MonoBehaviour
@@ -157,6 +157,25 @@ public class FarmerStateManager : MonoBehaviour
 
         return true; 
     }
+
+    [Button]
+    public bool GoCarry(Vector3 firstDestination, Vector3 endDestination)
+    {
+        if (_isBusy)
+            return false;
+
+        _isBusy = true;
+        farmerAction = FarmerActions.Carry;
+        // _firstDestination = firstDestination;
+        // _endDestination = endDestination;
+        _firstDestination = inventory.position;
+        _endDestination = field.position;
+        SwitchState(idleState);
+
+        return true; 
+    }
+    
+    
 
     
     public void PlayAnimation(string newState)

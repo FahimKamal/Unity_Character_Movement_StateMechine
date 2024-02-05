@@ -31,12 +31,12 @@ public class FarmerWalkState : FarmerBaseState
 
     public override void OnStateTriggerEnter(FarmerStateManager farmer, Collider collider)
     {
-        if (collider.CompareTag(KeyManager.TagInventory) && farmer.farmerAction == FarmerActions.Seeding)
+        if (collider.CompareTag(KeyManager.TagInventory) && farmer.farmerAction is FarmerActions.Seeding)
         {
             farmer.SetPositionAndRotation(collider.transform.GetChild(0).transform);
             farmer.SwitchState(farmer.boxPickupState);
         }
-        if (collider.CompareTag(KeyManager.TagField) && farmer.farmerAction == FarmerActions.Watering)
+        if (collider.CompareTag(KeyManager.TagField) && farmer.farmerAction is FarmerActions.Watering)
         {
             farmer.SetPositionAndRotation(collider.transform.GetChild(0).transform);
             farmer.SwitchState(farmer.wateringState);
@@ -50,6 +50,11 @@ public class FarmerWalkState : FarmerBaseState
         {
             farmer.SetPositionAndRotation(collider.transform.GetChild(0).transform);
             farmer.SwitchState(farmer.kneelDownState);
+        }
+        if (collider.CompareTag(KeyManager.TagInventory) || collider.CompareTag(KeyManager.TagField) && farmer.farmerAction is FarmerActions.Carry)
+        {
+            farmer.SetPositionAndRotation(collider.transform.GetChild(0).transform);
+            farmer.SwitchState(farmer.boxPickupState);
         }
     }
 }
