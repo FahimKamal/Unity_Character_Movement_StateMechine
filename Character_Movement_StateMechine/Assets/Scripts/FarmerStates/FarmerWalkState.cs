@@ -56,5 +56,12 @@ public class FarmerWalkState : FarmerBaseState
             farmer.SetPositionAndRotation(collider.transform.GetChild(0).transform);
             farmer.SwitchState(farmer.boxPickupState);
         }
+
+        if (collider.CompareTag(KeyManager.TagTree) && farmer.farmerAction is FarmerActions.CuttingTree)
+        {
+            farmer.transform.position = collider.GetComponent<Tree>().ClosestStandPosition(transform.position).position;
+            farmer.transform.rotation = collider.GetComponent<Tree>().ClosestStandPosition(transform.position).rotation;
+            farmer.SwitchState(farmer.cutTreeState);
+        }
     }
 }

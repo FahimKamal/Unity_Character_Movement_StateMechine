@@ -28,13 +28,13 @@ public class FarmerWalkWithBoxState : FarmerBaseState
             return;
         }
 
-        if (collider.CompareTag(KeyManager.TagInventory) && farmer.farmerAction is FarmerActions.Harvesting)
+        if (collider.CompareTag(KeyManager.TagInventory) && (farmer.farmerAction is FarmerActions.Harvesting or FarmerActions.CuttingTree))
         {
             farmer.SetPositionAndRotation(collider.transform.GetChild(0).transform);
             farmer.SwitchState(farmer.boxDropDownState);
         }
 
-        if (collider.CompareTag(KeyManager.TagField) || collider.CompareTag(KeyManager.TagInventory) && farmer.farmerAction is FarmerActions.Carry)
+        if ((collider.CompareTag(KeyManager.TagField) || collider.CompareTag(KeyManager.TagInventory)) && farmer.farmerAction is FarmerActions.Carry)
         {
             farmer.SetPositionAndRotation(collider.transform.GetChild(0).transform);
             farmer.SwitchState(farmer.boxDropDownState);

@@ -1,32 +1,97 @@
 using System;
 using System.Collections.Generic;
+using TriInspector;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Tree : MonoBehaviour
 {
-    [SerializeField] private Vector3 standPointUp;
-    [SerializeField] private Vector3 standPointDown;
-    [SerializeField] private Vector3 standPointLeft;
-    [SerializeField] private Vector3 standPointRight;
-
-    public List<Vector3> StandPoints { get; private set; }
-
-    private void OnValidate()
+    [Serializable]
+    public class PositionRotation
     {
-        
+        public string name;
+        public Vector3 position;
+        public Quaternion rotation;
+
+        public PositionRotation(string name, Vector3 position, Quaternion rotation)
+        {
+            this.name = name;
+            this.position = position;
+            this.rotation = rotation;
+        }
+    }
+    [Header("Tree Property")]
+    [Tooltip("The time it takes to cut the tree")]
+    [SerializeField] private float cuttingTime = 10.0f;
+    [SerializeField] private float health = 100.0f;
+
+    [Header("NPC Stand Positions")]
+    [SerializeField] private bool showLocation = true;
+    [SerializeField] private Mesh arrowMesh;
+
+    [SerializeField] private List<PositionRotation> standPoints;
+    public List<PositionRotation> _standPointsTransform;
+
+    public List<PositionRotation> StandPointsTransform => _standPointsTransform;
+
+    public float CuttingTime => cuttingTime;
+
+    public float Health => health;
+
+
+    private void Awake()
+    {
+        ValidatePositions();
     }
 
-    private void Start()
+    public PositionRotation ClosestStandPosition(Vector3 center)
     {
-        StandPoints = new List<Vector3>(){standPointUp, standPointDown, standPointLeft, standPointRight};
+        PositionRotation closest = null;
+        float closestDistance = float.MaxValue;
+        foreach (var positionRotation in _standPointsTransform)
+        {
+            float distance = Vector3.Distance(positionRotation.position, center);
+            if (distance < closestDistance)
+            {
+                closestDistance = distance;
+                closest = positionRotation;
+            }
+        }
+
+        return closest;
+    }
+    
+
+    [Button]
+    private void ValidatePositions()
+    {
+        var rootTran = transform;
+        
+        _standPointsTransform?.Clear();
+        if (standPoints != null)
+        {
+            foreach (var VARIABLE in standPoints)
+            {
+                var standTrans = new PositionRotation(
+                    VARIABLE.name,
+                    rootTran.position + VARIABLE.position,
+                    rootTran.rotation * VARIABLE.rotation);
+                _standPointsTransform.Add(standTrans);
+            }
+        }
     }
 
     private void OnDrawGizmosSelected()
     {
-        Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(transform.position + standPointUp, 0.3f);
-        Gizmos.DrawWireSphere(transform.position + standPointDown, 0.3f);
-        Gizmos.DrawWireSphere(transform.position + standPointLeft, 0.3f);
-        Gizmos.DrawWireSphere(transform.position + standPointRight, 0.3f);
+        if (showLocation)
+        {
+            Gizmos.color = Color.blue;
+            foreach (var positionRotation in _standPointsTransform)
+            {
+                Gizmos.DrawWireMesh(arrowMesh, positionRotation.position, positionRotation.rotation, new Vector3(1f, 1f, 1f));
+            }
+            
+        }
     }
-}
+    
+} // class

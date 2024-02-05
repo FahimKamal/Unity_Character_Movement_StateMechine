@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Inventory
   - Field
+  - Tree
   layers:
   - Default
   - TransparentFX

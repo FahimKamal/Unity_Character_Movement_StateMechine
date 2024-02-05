@@ -977,6 +977,7 @@ GameObject:
   - component: {fileID: 3276316520631803120}
   - component: {fileID: 5284608696575132159}
   - component: {fileID: 211892500759113499}
+  - component: {fileID: 432711674521216812}
   m_Layer: 0
   m_Name: FantasyFarmer
   m_TagString: Untagged
@@ -1120,6 +1121,7 @@ MonoBehaviour:
   wateringState: {fileID: 0}
   boxDropDownState: {fileID: 0}
   buildingState: {fileID: 0}
+  cutTreeState: {fileID: 0}
   agent: {fileID: 2746103555408332128}
   animator: {fileID: 2079274992565952601}
   wayPoints: {fileID: 0}
@@ -1259,6 +1261,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buildingTime: 5
+--- !u!114 &432711674521216812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3747520163526750276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0d7b76e0592c1c48ad1014e0efdca2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3793265318589757788
 GameObject:
   m_ObjectHideFlags: 0

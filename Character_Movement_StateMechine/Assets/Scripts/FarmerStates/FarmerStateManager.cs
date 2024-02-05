@@ -33,6 +33,7 @@ public class FarmerStateManager : MonoBehaviour
     [HideInInspector] public FarmerWateringState    wateringState;
     [HideInInspector] public FarmerBoxDropDownState boxDropDownState;
     [HideInInspector] public FarmerBuildingState    buildingState;
+    [HideInInspector] public FarmerCutTreeState     cutTreeState;
 
     public NavMeshAgent agent;
     public Animator     animator;
@@ -66,6 +67,7 @@ public class FarmerStateManager : MonoBehaviour
         harvestingState  = GetComponent<FarmerHarvestingState>();
         boxDropDownState = GetComponent<FarmerBoxDropDownState>();
         buildingState    = GetComponent<FarmerBuildingState>();
+        cutTreeState     = GetComponent<FarmerCutTreeState>();
 
 
         _firstDestination = inventory.position;
@@ -174,8 +176,22 @@ public class FarmerStateManager : MonoBehaviour
 
         return true; 
     }
-    
-    
+
+    [Button]
+    public bool GoCutTree(Tree tree, Vector3 endDestination)
+    {
+        if (_isBusy)
+            return false;
+
+        _isBusy = true;
+        farmerAction = FarmerActions.CuttingTree;
+        cutTreeState.cutTreeTime = tree.CuttingTime;
+        _firstDestination = tree.ClosestStandPosition(transform.position).position;
+        _endDestination = inventory.position;
+        SwitchState(idleState);
+
+        return true;
+    }
 
     
     public void PlayAnimation(string newState)
