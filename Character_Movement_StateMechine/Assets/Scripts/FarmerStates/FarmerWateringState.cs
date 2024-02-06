@@ -1,28 +1,30 @@
-using FarmerStates;
 using UnityEngine;
 
-public class FarmerWateringState : FarmerBaseState
+namespace FarmerStates
 {
-    private FarmerStateManager _manager;
-    public override void EnterState(FarmerStateManager farmer)
+    public class FarmerWateringState : FarmerBaseState
     {
-        Debug.Log("Entering Watering State");
-        _manager = farmer;
-        farmer.PlayAnimation(KeyManager.Watering);
-    }
+        private FarmerStateManager _manager;
+        public override void EnterState(FarmerStateManager farmer)
+        {
+            Debug.Log("Entering Watering State");
+            _manager = farmer;
+            farmer.PlayAnimation(KeyManager.Watering);
+        }
 
-    public override void ExitState(FarmerStateManager farmer)
-    {
-        Debug.Log("Exiting Watering State");
-    }
+        public override void ExitState(FarmerStateManager farmer)
+        {
+            Debug.Log("Exiting Watering State");
+        }
 
-    /// <summary>
-    /// Animation event method.
-    /// </summary>
-    public void WateringComplete()
-    {
-        Debug.Log("Watering Complete");
-        _manager.ActionComplete();
+        /// <summary>
+        /// Animation event method.
+        /// </summary>
+        public void WateringComplete()
+        {
+            Debug.Log("Watering Complete");
+            _manager.ActionComplete();
         
+        }
     }
 }

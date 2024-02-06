@@ -1,13 +1,15 @@
-using FarmerStates;
 using UnityEngine;
 
-public abstract class FarmerBaseState : MonoBehaviour
+namespace FarmerStates
 {
-    public abstract  void EnterState(FarmerStateManager farmer);
+    public abstract class FarmerBaseState : MonoBehaviour
+    {
+        public abstract  void EnterState(FarmerStateManager farmer);
 
-    public virtual void UpdateState(FarmerStateManager farmer) { }
+        public virtual void UpdateState(FarmerStateManager farmer) { }
 
-    public virtual void ExitState(FarmerStateManager farmer) { }
+        public virtual void ExitState(FarmerStateManager farmer) { }
 
-    public virtual void OnStateTriggerEnter(FarmerStateManager farmer, Collider collider) { }
+        public virtual void OnStateTriggerEnter(FarmerStateManager farmer, Collider collider) { }
+    }
 }

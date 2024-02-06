@@ -1,28 +1,30 @@
-using FarmerStates;
 using UnityEngine;
 
-public class FarmerBoxPickupState : FarmerBaseState
+namespace FarmerStates
 {
-    private FarmerStateManager _manager;
-    public override void EnterState(FarmerStateManager farmer)
+    public class FarmerBoxPickupState : FarmerBaseState
     {
-        Debug.Log("Entering box pickup state");
-        _manager = farmer;
-        farmer.PlayAnimation(KeyManager.SeedPickingUp);
-        // Play box pickup animation. 
-    }
+        private FarmerStateManager _manager;
+        public override void EnterState(FarmerStateManager farmer)
+        {
+            Debug.Log("Entering box pickup state");
+            _manager = farmer;
+            farmer.PlayAnimation(KeyManager.SeedPickingUp);
+            // Play box pickup animation. 
+        }
 
-    public override void ExitState(FarmerStateManager farmer)
-    {
-        Debug.Log("Exiting box pickup state.");
-    }
+        public override void ExitState(FarmerStateManager farmer)
+        {
+            Debug.Log("Exiting box pickup state.");
+        }
 
-    /// <summary>
-    /// Animation event method.
-    /// </summary>
-    public void PickupComplete()
-    {
-        Debug.Log("pickup complete");
-        _manager.SwitchState(_manager.walkWithBoxState);
+        /// <summary>
+        /// Animation event method.
+        /// </summary>
+        public void PickupComplete()
+        {
+            Debug.Log("pickup complete");
+            _manager.SwitchState(_manager.walkWithBoxState);
+        }
     }
 }

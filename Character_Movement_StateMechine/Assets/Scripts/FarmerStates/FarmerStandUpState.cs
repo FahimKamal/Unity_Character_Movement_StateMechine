@@ -1,26 +1,28 @@
-using FarmerStates;
 using UnityEngine;
 
-public class FarmerStandUpState : FarmerBaseState
+namespace FarmerStates
 {
-    private FarmerStateManager _manager;
-    public override void EnterState(FarmerStateManager farmer)
+    public class FarmerStandUpState : FarmerBaseState
     {
-        Debug.Log("Entering StandUp State");
-        _manager = farmer;
-        farmer.PlayAnimation(KeyManager.StandUp);
-    }
+        private FarmerStateManager _manager;
+        public override void EnterState(FarmerStateManager farmer)
+        {
+            Debug.Log("Entering StandUp State");
+            _manager = farmer;
+            farmer.PlayAnimation(KeyManager.StandUp);
+        }
 
-    public override void ExitState(FarmerStateManager farmer)
-    {
-        Debug.Log("Exiting StandUp State");
-    }
+        public override void ExitState(FarmerStateManager farmer)
+        {
+            Debug.Log("Exiting StandUp State");
+        }
 
-    /// <summary>
-    /// Animation event method.
-    /// </summary>
-    public void StandUpComplete()
-    {
-        _manager.ActionComplete();
+        /// <summary>
+        /// Animation event method.
+        /// </summary>
+        public void StandUpComplete()
+        {
+            _manager.ActionComplete();
+        }
     }
 }

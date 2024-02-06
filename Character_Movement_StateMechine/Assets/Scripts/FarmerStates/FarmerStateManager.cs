@@ -276,11 +276,6 @@ namespace FarmerStates
             _endDestination = null;
             SwitchState(walkingState);
         }
-
-        public void SetPositionAndRotation(Transform target)
-        {
-            transform.SetPositionAndRotation(target.position, target.rotation);
-        }
         
         internal IEnumerator GetToPositionAndRotation(Vector3 pos, Quaternion rot, float time, Action<bool> callBack)
         {
