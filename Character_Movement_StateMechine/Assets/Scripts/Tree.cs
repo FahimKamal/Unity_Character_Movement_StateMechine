@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using TriInspector;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class Tree : MonoBehaviour
 {
@@ -20,6 +19,7 @@ public class Tree : MonoBehaviour
             this.rotation = rotation;
         }
     }
+    
     [Header("Tree Property")]
     [Tooltip("The time it takes to cut the tree")]
     [SerializeField] private float cuttingTime = 10.0f;
@@ -30,9 +30,7 @@ public class Tree : MonoBehaviour
     [SerializeField] private Mesh arrowMesh;
 
     [SerializeField] private List<PositionRotation> standPoints;
-    public List<PositionRotation> _standPointsTransform;
-
-    public List<PositionRotation> StandPointsTransform => _standPointsTransform;
+    private List<PositionRotation> _standPointsTransform;
 
     public float CuttingTime => cuttingTime;
 
@@ -41,9 +39,16 @@ public class Tree : MonoBehaviour
 
     private void Awake()
     {
+        _standPointsTransform = new List<PositionRotation>();
         ValidatePositions();
     }
 
+    /// <summary>
+    /// Upon giving a vector3 location, method returns the closest standpoint of the tree that are created
+    /// but developer around the tree. 
+    /// </summary>
+    /// <param name="center"></param>
+    /// <returns></returns>
     public PositionRotation ClosestStandPosition(Vector3 center)
     {
         PositionRotation closest = null;
@@ -61,8 +66,9 @@ public class Tree : MonoBehaviour
         return closest;
     }
     
-
-    [Button]
+    /// <summary>
+    /// Internal method to calculate the location and rotation of standpoints.
+    /// </summary>
     private void ValidatePositions()
     {
         var rootTran = transform;
@@ -70,12 +76,12 @@ public class Tree : MonoBehaviour
         _standPointsTransform?.Clear();
         if (standPoints != null)
         {
-            foreach (var VARIABLE in standPoints)
+            foreach (var variable in standPoints)
             {
                 var standTrans = new PositionRotation(
-                    VARIABLE.name,
-                    rootTran.position + VARIABLE.position,
-                    rootTran.rotation * VARIABLE.rotation);
+                    variable.name,
+                    rootTran.position + variable.position,
+                    rootTran.rotation * variable.rotation);
                 _standPointsTransform.Add(standTrans);
             }
         }
@@ -83,14 +89,17 @@ public class Tree : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        if (showLocation)
+        if (!showLocation) return;
+        
+        Gizmos.color = Color.blue;
+        var objTransform = transform;
+        foreach (var standPoint in standPoints)
         {
-            Gizmos.color = Color.blue;
-            foreach (var positionRotation in _standPointsTransform)
-            {
-                Gizmos.DrawWireMesh(arrowMesh, positionRotation.position, positionRotation.rotation, new Vector3(1f, 1f, 1f));
-            }
             
+            Gizmos.DrawWireMesh(arrowMesh, 
+                objTransform.position + standPoint.position, 
+                objTransform.rotation * standPoint.rotation, 
+                new Vector3(1f, 1f, 1f));
         }
     }
     
