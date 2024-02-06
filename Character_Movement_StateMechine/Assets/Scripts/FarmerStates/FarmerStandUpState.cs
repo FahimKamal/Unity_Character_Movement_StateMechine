@@ -1,3 +1,4 @@
+using FarmerStates;
 using UnityEngine;
 
 public class FarmerStandUpState : FarmerBaseState
@@ -15,6 +16,9 @@ public class FarmerStandUpState : FarmerBaseState
         Debug.Log("Exiting StandUp State");
     }
 
+    /// <summary>
+    /// Animation event method.
+    /// </summary>
     public void StandUpComplete()
     {
         _manager.ActionComplete();

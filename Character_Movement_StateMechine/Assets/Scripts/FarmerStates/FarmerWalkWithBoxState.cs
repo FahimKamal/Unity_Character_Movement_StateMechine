@@ -1,3 +1,4 @@
+using FarmerStates;
 using UnityEngine;
 
 public class FarmerWalkWithBoxState : FarmerBaseState
@@ -5,7 +6,7 @@ public class FarmerWalkWithBoxState : FarmerBaseState
     public override void EnterState(FarmerStateManager farmer)
     {
         Debug.Log("Entering WalkWithBox State");
-        farmer.agent.SetDestination(farmer.EndDestination);
+        farmer.agent.SetDestination(farmer.EndDestination.ClosestStandPositionAndRotation(transform.position).position);
         farmer.PlayAnimation(KeyManager.WalkingWithBox);
     }
 
@@ -21,23 +22,63 @@ public class FarmerWalkWithBoxState : FarmerBaseState
 
     public override void OnStateTriggerEnter(FarmerStateManager farmer, Collider collider)
     {
-        if (collider.CompareTag(KeyManager.TagField) && farmer.farmerAction == FarmerActions.Seeding)
+        if (collider == farmer.EndDestination.AttachedCollider && farmer.farmerAction == FarmerActions.Seeding)
         {
-            farmer.SetPositionAndRotation(collider.transform.GetChild(0).transform);
-            farmer.SwitchState(farmer.kneelDownState);
+            var targetTrans = collider.GetComponent<NpcInteractable>().ClosestStandPositionAndRotation(transform.position);
+            
+            StartCoroutine(farmer.GetToPositionAndRotation(
+                targetTrans.position,
+                targetTrans.rotation,
+                0.3f,
+                (success) =>
+                {
+                    if (success)
+                    {
+                        farmer.SwitchState(farmer.kneelDownState);
+                    }
+                }
+            ));
+            
             return;
         }
 
-        if (collider.CompareTag(KeyManager.TagInventory) && (farmer.farmerAction is FarmerActions.Harvesting or FarmerActions.CuttingTree))
+        if (collider == farmer.EndDestination.AttachedCollider && (farmer.farmerAction is FarmerActions.Harvesting or FarmerActions.CuttingTree))
         {
-            farmer.SetPositionAndRotation(collider.transform.GetChild(0).transform);
-            farmer.SwitchState(farmer.boxDropDownState);
+            // farmer.SetPositionAndRotation(collider.transform.GetChild(0).transform);
+            var targetTrans = collider.GetComponent<NpcInteractable>().ClosestStandPositionAndRotation(transform.position);
+            
+            StartCoroutine(farmer.GetToPositionAndRotation(
+                targetTrans.position,
+                targetTrans.rotation,
+                0.3f,
+                (success) =>
+                {
+                    if (success)
+                    {
+                        farmer.SwitchState(farmer.boxDropDownState);
+                    }
+                }
+            ));
+            
         }
 
-        if ((collider.CompareTag(KeyManager.TagField) || collider.CompareTag(KeyManager.TagInventory)) && farmer.farmerAction is FarmerActions.Carry)
+        if (collider == farmer.EndDestination.AttachedCollider && farmer.farmerAction is FarmerActions.Carry)
         {
-            farmer.SetPositionAndRotation(collider.transform.GetChild(0).transform);
-            farmer.SwitchState(farmer.boxDropDownState);
+            // farmer.SetPositionAndRotation(collider.transform.GetChild(0).transform);
+            var targetTrans = collider.GetComponent<NpcInteractable>().ClosestStandPositionAndRotation(transform.position);
+            
+            StartCoroutine(farmer.GetToPositionAndRotation(
+                targetTrans.position,
+                targetTrans.rotation,
+                0.3f,
+                (success) =>
+                {
+                    if (success)
+                    {
+                        farmer.SwitchState(farmer.boxDropDownState);
+                    }
+                }
+            ));
         }
     }
 }

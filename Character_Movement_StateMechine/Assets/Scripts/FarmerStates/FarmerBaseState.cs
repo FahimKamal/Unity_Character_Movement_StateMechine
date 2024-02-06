@@ -1,3 +1,4 @@
+using FarmerStates;
 using UnityEngine;
 
 public abstract class FarmerBaseState : MonoBehaviour

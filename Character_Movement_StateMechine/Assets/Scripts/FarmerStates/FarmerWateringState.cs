@@ -1,3 +1,4 @@
+using FarmerStates;
 using UnityEngine;
 
 public class FarmerWateringState : FarmerBaseState
@@ -15,6 +16,9 @@ public class FarmerWateringState : FarmerBaseState
         Debug.Log("Exiting Watering State");
     }
 
+    /// <summary>
+    /// Animation event method.
+    /// </summary>
     public void WateringComplete()
     {
         Debug.Log("Watering Complete");

@@ -1,5 +1,4 @@
-using System;
-using System.Collections;
+using FarmerStates;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -15,7 +14,7 @@ public class FarmerWalkState : FarmerBaseState
         }
         else
         {
-            farmer.agent.SetDestination(farmer.FirstDestination);
+            farmer.agent.SetDestination(farmer.FirstDestination.ClosestStandPositionAndRotation(transform.position).position);
         }
     }
 
@@ -32,14 +31,15 @@ public class FarmerWalkState : FarmerBaseState
         Debug.Log("Exiting Walk State");
     }
 
+    
     public override void OnStateTriggerEnter(FarmerStateManager farmer, Collider collider)
     {
-        if (collider.CompareTag(KeyManager.TagInventory) && farmer.farmerAction is FarmerActions.Seeding)
+        if (collider == farmer.FirstDestination.AttachedCollider && farmer.farmerAction is FarmerActions.Seeding)
         {
             // farmer.SetPositionAndRotation(collider.transform.GetChild(0).transform);
-            var targetTrans = collider.transform.GetChild(0).transform;
+            var targetTrans = collider.GetComponent<NpcInteractable>().ClosestStandPositionAndRotation(transform.position);
             
-            StartCoroutine(GetToPositionAndRotation(
+            StartCoroutine(farmer.GetToPositionAndRotation(
                 targetTrans.position,
                 targetTrans.rotation,
                 0.3f,
@@ -47,19 +47,19 @@ public class FarmerWalkState : FarmerBaseState
                     {
                         if (success)
                         {
-                            farmer.SwitchState(farmer.seedingState);
+                            farmer.SwitchState(farmer.boxPickupState);
                         }
                     }
                 ));
             
             // farmer.SwitchState(farmer.boxPickupState);
         }
-        if (collider.CompareTag(KeyManager.TagField) && farmer.farmerAction is FarmerActions.Watering)
+        if (collider == farmer.FirstDestination.AttachedCollider && farmer.farmerAction is FarmerActions.Watering)
         {
             // farmer.SetPositionAndRotation(collider.transform.GetChild(0).transform);
-            var targetTrans = collider.transform.GetChild(0).transform;
+            var targetTrans = collider.GetComponent<NpcInteractable>().ClosestStandPositionAndRotation(transform.position);
             
-            StartCoroutine(GetToPositionAndRotation(
+            StartCoroutine(farmer.GetToPositionAndRotation(
                 targetTrans.position,
                 targetTrans.rotation,
                 3f,
@@ -74,12 +74,12 @@ public class FarmerWalkState : FarmerBaseState
             
             // farmer.SwitchState(farmer.wateringState);
         }
-        if (collider.CompareTag(KeyManager.TagField) && farmer.farmerAction == FarmerActions.Harvesting)
+        if (collider == farmer.FirstDestination.AttachedCollider && farmer.farmerAction == FarmerActions.Harvesting)
         {
             // farmer.SetPositionAndRotation(collider.transform.GetChild(0).transform);
-            var targetTrans = collider.transform.GetChild(0).transform;
+            var targetTrans = collider.GetComponent<NpcInteractable>().ClosestStandPositionAndRotation(transform.position);
             
-            StartCoroutine(GetToPositionAndRotation(
+            StartCoroutine(farmer.GetToPositionAndRotation(
                 targetTrans.position,
                 targetTrans.rotation,
                 0.3f,
@@ -93,12 +93,12 @@ public class FarmerWalkState : FarmerBaseState
                 ));
             
         }
-        if (collider.CompareTag(KeyManager.TagField) && farmer.farmerAction == FarmerActions.Building)
+        if (collider == farmer.FirstDestination.AttachedCollider && farmer.farmerAction == FarmerActions.Building)
         {
             // farmer.SetPositionAndRotation(collider.transform.GetChild(0).transform);
-            var targetTrans = collider.transform.GetChild(0).transform;
+            var targetTrans = collider.GetComponent<NpcInteractable>().ClosestStandPositionAndRotation(transform.position);
             
-            StartCoroutine(GetToPositionAndRotation(
+            StartCoroutine(farmer.GetToPositionAndRotation(
                 targetTrans.position,
                 targetTrans.rotation,
                 0.3f,
@@ -112,12 +112,12 @@ public class FarmerWalkState : FarmerBaseState
             
             
         }
-        if (collider.CompareTag(KeyManager.TagInventory) || collider.CompareTag(KeyManager.TagField) && farmer.farmerAction is FarmerActions.Carry)
+        if (collider == farmer.FirstDestination.AttachedCollider && farmer.farmerAction is FarmerActions.Carry)
         {
             // farmer.SetPositionAndRotation(collider.transform.GetChild(0).transform);
-            var targetTrans = collider.transform.GetChild(0).transform;
+            var targetTrans = collider.GetComponent<NpcInteractable>().ClosestStandPositionAndRotation(transform.position);
             
-            StartCoroutine(GetToPositionAndRotation(
+            StartCoroutine(farmer.GetToPositionAndRotation(
                 targetTrans.position,
                 targetTrans.rotation,
                 0.3f,
@@ -130,10 +130,10 @@ public class FarmerWalkState : FarmerBaseState
                 }));
         }
 
-        if (collider.CompareTag(KeyManager.TagTree) && farmer.farmerAction is FarmerActions.CuttingTree)
+        if (collider == farmer.FirstDestination.AttachedCollider && farmer.farmerAction is FarmerActions.CuttingTree)
         {
-            var closestStandPosition = collider.GetComponent<Tree>().ClosestStandPosition(transform.position);
-            StartCoroutine(GetToPositionAndRotation(
+            var closestStandPosition = collider.GetComponent<NpcInteractable>().ClosestStandPositionAndRotation(transform.position);
+            StartCoroutine(farmer.GetToPositionAndRotation(
                 closestStandPosition.position, 
                 closestStandPosition.rotation, 
                 0.3f,
@@ -147,22 +147,6 @@ public class FarmerWalkState : FarmerBaseState
             
             
         }
-    }
-
-    private IEnumerator GetToPositionAndRotation(Vector3 pos, Quaternion rot, float time, Action<bool> callBack)
-    {
-        float t = 0;
-        var position = transform.position;
-        var rotation = transform.rotation;
-        while (t < time)
-        {
-            t += Time.deltaTime;
-            transform.position = Vector3.Lerp(position, pos, t / time);
-            transform.rotation = Quaternion.Lerp(rotation, rot, t / time);
-            yield return null;
-        }
-        callBack(true);
-        yield break;
     }
     
 

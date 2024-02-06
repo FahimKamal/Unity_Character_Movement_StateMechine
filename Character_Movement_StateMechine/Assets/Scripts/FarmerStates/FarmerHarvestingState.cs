@@ -1,3 +1,4 @@
+using FarmerStates;
 using UnityEngine;
 
 public class FarmerHarvestingState : FarmerBaseState
@@ -15,6 +16,9 @@ public class FarmerHarvestingState : FarmerBaseState
         Debug.Log("Exiting Harvesting State");
     }
 
+    /// <summary>
+    /// Animation event method.
+    /// </summary>
     public void HarvestingComplete()
     {
         _manager.SwitchState(_manager.walkWithBoxState);

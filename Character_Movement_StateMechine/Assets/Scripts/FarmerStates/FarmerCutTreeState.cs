@@ -1,3 +1,4 @@
+using FarmerStates;
 using UnityEngine;
 
 public class FarmerCutTreeState : FarmerBaseState
@@ -33,6 +34,9 @@ public class FarmerCutTreeState : FarmerBaseState
         cutTreeTimer = 0.0f;
     }
 
+    /// <summary>
+    /// Animation Event Method. 
+    /// </summary>
     public void AexSwingComplete()
     {
         if (_isCuttingComplete)

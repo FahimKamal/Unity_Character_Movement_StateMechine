@@ -1,3 +1,4 @@
+using FarmerStates;
 using UnityEngine;
 
 public class FarmerKneelDownState : FarmerBaseState
@@ -15,6 +16,9 @@ public class FarmerKneelDownState : FarmerBaseState
         Debug.Log("Exiting Kneel Down State");
     }
 
+    /// <summary>
+    /// Animation event method.
+    /// </summary>
     public void KneelDownComplete()
     {
         if (_manager.farmerAction == FarmerActions.Seeding)

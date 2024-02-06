@@ -1,3 +1,4 @@
+using FarmerStates;
 using UnityEngine;
 
 public class FarmerBoxPickupState : FarmerBaseState
@@ -16,6 +17,9 @@ public class FarmerBoxPickupState : FarmerBaseState
         Debug.Log("Exiting box pickup state.");
     }
 
+    /// <summary>
+    /// Animation event method.
+    /// </summary>
     public void PickupComplete()
     {
         Debug.Log("pickup complete");

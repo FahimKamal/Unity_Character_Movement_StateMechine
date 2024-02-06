@@ -1,3 +1,4 @@
+using FarmerStates;
 using UnityEngine;
 
 public class FarmerBoxDropDownState : FarmerBaseState
@@ -15,11 +16,17 @@ public class FarmerBoxDropDownState : FarmerBaseState
         Debug.Log("Exiting Dropbox State");
     }
 
+    /// <summary>
+    /// Animation event method.
+    /// </summary>
     public void DropDownComplete()
     {
         _manager.PlayAnimation(KeyManager.DropUp);
     }
 
+    /// <summary>
+    /// Animation event method.
+    /// </summary>
     public void DropUpComplete()
     {
         _manager.ActionComplete();

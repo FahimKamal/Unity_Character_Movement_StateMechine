@@ -1,3 +1,4 @@
+using FarmerStates;
 using UnityEngine;
 
 public class FarmerBuildingState : FarmerBaseState
@@ -34,6 +35,9 @@ public class FarmerBuildingState : FarmerBaseState
         _timer = 0.0f;
     }
 
+    /// <summary>
+    /// Animation Event Method. 
+    /// </summary>
     public void BuildingComplete()
     {
         if (_isBuildingComplete)

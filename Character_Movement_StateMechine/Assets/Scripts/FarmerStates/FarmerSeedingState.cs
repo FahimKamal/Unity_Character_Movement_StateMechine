@@ -1,3 +1,4 @@
+using FarmerStates;
 using UnityEngine;
 
 public class FarmerSeedingState : FarmerBaseState
@@ -16,6 +17,9 @@ public class FarmerSeedingState : FarmerBaseState
         Debug.Log("Exiting seeding State");
     }
 
+    /// <summary>
+    /// Animation event method.
+    /// </summary>
     public void SeedingComplete()
     {
         _manager.SwitchState(_manager.standUpState);
