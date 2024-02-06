@@ -22,7 +22,7 @@ public class FarmerWalkWithBoxState : FarmerBaseState
 
     public override void OnStateTriggerEnter(FarmerStateManager farmer, Collider collider)
     {
-        if (collider == farmer.EndDestination.AttachedCollider && farmer.farmerAction == FarmerActions.Seeding)
+        if (farmer.farmerAction == FarmerActions.Seeding && collider == farmer.EndDestination.AttachedCollider)
         {
             var targetTrans = collider.GetComponent<NpcInteractable>().ClosestStandPositionAndRotation(transform.position);
             
@@ -42,7 +42,7 @@ public class FarmerWalkWithBoxState : FarmerBaseState
             return;
         }
 
-        if (collider == farmer.EndDestination.AttachedCollider && (farmer.farmerAction is FarmerActions.Harvesting or FarmerActions.CuttingTree))
+        if ((farmer.farmerAction is FarmerActions.Harvesting or FarmerActions.CuttingTree) && collider == farmer.EndDestination.AttachedCollider)
         {
             // farmer.SetPositionAndRotation(collider.transform.GetChild(0).transform);
             var targetTrans = collider.GetComponent<NpcInteractable>().ClosestStandPositionAndRotation(transform.position);
@@ -62,7 +62,7 @@ public class FarmerWalkWithBoxState : FarmerBaseState
             
         }
 
-        if (collider == farmer.EndDestination.AttachedCollider && farmer.farmerAction is FarmerActions.Carry)
+        if (farmer.farmerAction is FarmerActions.Carry && collider == farmer.EndDestination.AttachedCollider)
         {
             // farmer.SetPositionAndRotation(collider.transform.GetChild(0).transform);
             var targetTrans = collider.GetComponent<NpcInteractable>().ClosestStandPositionAndRotation(transform.position);
