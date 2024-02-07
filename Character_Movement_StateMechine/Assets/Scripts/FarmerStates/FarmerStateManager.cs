@@ -146,7 +146,7 @@ namespace FarmerStates
         /// <param name="firstDestination">Location of the field.</param>
         /// <returns>Bool status of command execution</returns>
         [Button]
-        public bool GoWatering(Vector3 firstDestination)
+        public bool GoWatering(NpcInteractable firstDestination)
         {
             if (_isBusy)
                 return false;
@@ -167,7 +167,7 @@ namespace FarmerStates
         /// <param name="endDestination">Location of the inventory.</param>
         /// <returns>Bool status of command execution.</returns>
         [Button]
-        public bool GoHarvesting(Vector3 firstDestination, Vector3 endDestination)
+        public bool GoHarvesting(NpcInteractable firstDestination, NpcInteractable endDestination)
         {
             if (_isBusy)
                 return false;
@@ -190,7 +190,7 @@ namespace FarmerStates
         /// <param name="buildingTime">Time needed to complete the task.</param>
         /// <returns>Bool status of command execution.</returns>
         [Button]
-        public bool GoBuilding(Vector3 firstDestination, float buildingTime)
+        public bool GoBuilding(NpcInteractable firstDestination, float buildingTime)
         {
             if (_isBusy)
                 return false;
@@ -212,7 +212,7 @@ namespace FarmerStates
         /// <param name="endDestination">Location to drop object</param>
         /// <returns>Bool status of command execution.</returns>
         [Button]
-        public bool GoCarry(Vector3 firstDestination, Vector3 endDestination)
+        public bool GoCarry(NpcInteractable firstDestination, NpcInteractable endDestination)
         {
             if (_isBusy)
                 return false;
@@ -235,7 +235,7 @@ namespace FarmerStates
         /// <param name="endDestination">Inventory location to bring the wood.</param>
         /// <returns>Bool status of command execution.</returns>
         [Button]
-        public bool GoCutTree(Tree tree, Vector3 endDestination)
+        public bool GoCutTree(Tree tree, NpcInteractable endDestination)
         {
             if (_isBusy)
                 return false;
