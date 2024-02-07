@@ -1,19 +1,23 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
+using WayPointGizmoTool;
 
-[RequireComponent(typeof(WayPointParent))]
-public class Inventory : NpcInteractable
+namespace Scripts
 {
-    [SerializeField] private WayPointParent _wayPointParent;
-    private void OnValidate()
+    [RequireComponent(typeof(WayPoints))]
+    public class Inventory : NpcInteractable
     {
-        _wayPointParent ??= GetComponent<WayPointParent>();
-    }
+        [SerializeField] private WayPoints wayPoints;
+        private void OnValidate()
+        {
+            wayPoints ??= GetComponent<WayPoints>();
+        }
 
-    private void Start()
-    {
-        // WayPoints x = _wayPointParent;
+        private void Start()
+        {
+            var valueTuple = wayPoints.GetPositionRotationAtIndex(2);
+            var some = wayPoints.ShowWayPoints;
+        }
     }
 }
+
