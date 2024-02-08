@@ -7,6 +7,7 @@ namespace WayPointGizmoTool
     public class WayPoints : MonoBehaviour
     {
         [SerializeField] internal bool ShowWayPoints = true;
+        [SerializeField] internal bool ShowPositionHandle = false;
         [SerializeField] private bool showConnection = false;
         [SerializeField] private Mesh arrowMesh;
         [SerializeField] internal List<Vector3> positions = new List<Vector3>();
@@ -142,6 +143,10 @@ namespace WayPointGizmoTool
                 return;
             }
 
+            if (!wayPoints.ShowPositionHandle)
+            {
+                return;
+            }
             for (int i = 0; i < wayPoints.positions.Count; i++)
             {
                 EditorGUI.BeginChangeCheck();

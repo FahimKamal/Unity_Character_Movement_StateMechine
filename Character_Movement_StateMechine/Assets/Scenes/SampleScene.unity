@@ -784,6 +784,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShowWayPoints: 1
+  ShowPositionHandle: 0
   showConnection: 0
   arrowMesh: {fileID: 1937192335180886834, guid: efb222649c7e71747a430525375fbaa8,
     type: 3}
@@ -940,7 +941,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShowWayPoints: 1
-  showConnection: 0
+  ShowPositionHandle: 1
+  showConnection: 1
   arrowMesh: {fileID: 1937192335180886834, guid: efb222649c7e71747a430525375fbaa8,
     type: 3}
   positions:
@@ -1585,6 +1587,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cf72906e9f9baa41982d44d9c1c26a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  npcInteractable: {fileID: 1528886076}
 --- !u!114 &1528886075
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1598,13 +1601,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShowWayPoints: 1
+  ShowPositionHandle: 0
   showConnection: 0
   arrowMesh: {fileID: 1937192335180886834, guid: efb222649c7e71747a430525375fbaa8,
     type: 3}
   positions:
-  - {x: -2.9094024, y: 0, z: 0.45000002}
+  - {x: -0.08057165, y: 0, z: -3.1689003}
   rotations:
-  - {x: 0, y: 0.70710677, z: 0, w: 0.70710677}
+  - {x: 0, y: 0.038248602, z: 0, w: 0.99926823}
 --- !u!114 &1528886076
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1652,6 +1656,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShowWayPoints: 1
+  ShowPositionHandle: 0
   showConnection: 1
   arrowMesh: {fileID: 1937192335180886834, guid: efb222649c7e71747a430525375fbaa8,
     type: 3}
