@@ -770,7 +770,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0db44f72857187b4d8f9211fd1fdce08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  npcInteractable: {fileID: 643210724}
+  npcIntractable: {fileID: 643210724}
 --- !u!114 &643210723
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -783,8 +783,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87b6356b6c06220459ae4a31f22f62db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ShowWayPoints: 1
-  ShowPositionHandle: 0
+  showWayPoints: 1
+  showPositionHandle: 0
   showConnection: 0
   arrowMesh: {fileID: 1937192335180886834, guid: efb222649c7e71747a430525375fbaa8,
     type: 3}
@@ -892,7 +892,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 2.7003822, y: 3.2787054, z: 3.3949037}
   m_Center: {x: 0.011974335, y: 1.5788642, z: 0.011973619}
@@ -905,7 +905,7 @@ Transform:
   m_GameObject: {fileID: 919709475}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 15.4, y: 0.51, z: 7.11}
+  m_LocalPosition: {x: 15.4, y: 1.474, z: 7.11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -927,7 +927,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cuttingTime: 10
   health: 100
-  npcInteractable: {fileID: 919709480}
+  npcIntractable: {fileID: 919709480}
 --- !u!114 &919709479
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -940,16 +940,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87b6356b6c06220459ae4a31f22f62db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ShowWayPoints: 1
-  ShowPositionHandle: 1
+  showWayPoints: 1
+  showPositionHandle: 1
   showConnection: 1
   arrowMesh: {fileID: 1937192335180886834, guid: efb222649c7e71747a430525375fbaa8,
     type: 3}
   positions:
-  - {x: 1.4345417, y: 0.07999998, z: -0.019382477}
-  - {x: 0, y: 0.07999998, z: 1.7782149}
-  - {x: -1.4122267, y: 0.07999998, z: 0}
-  - {x: -0.014180183, y: 0.07999998, z: -1.7835989}
+  - {x: 1.2902508, y: 0.07999992, z: -0.019893646}
+  - {x: 0, y: 0.07999992, z: 1.6861138}
+  - {x: -1.2544746, y: 0.07999992, z: 0}
+  - {x: -0.014180183, y: 0.07999992, z: -1.5977387}
   rotations:
   - {x: 0, y: -0.7083584, z: 0, w: 0.70585304}
   - {x: 0, y: 1, z: 0, w: -0.00000004371139}
@@ -1020,7 +1020,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -1094,7 +1094,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &1024398154
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1587,7 +1587,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cf72906e9f9baa41982d44d9c1c26a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  npcInteractable: {fileID: 1528886076}
+  npcIntractable: {fileID: 1528886076}
 --- !u!114 &1528886075
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1600,8 +1600,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87b6356b6c06220459ae4a31f22f62db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ShowWayPoints: 1
-  ShowPositionHandle: 0
+  showWayPoints: 1
+  showPositionHandle: 0
   showConnection: 0
   arrowMesh: {fileID: 1937192335180886834, guid: efb222649c7e71747a430525375fbaa8,
     type: 3}
@@ -1655,8 +1655,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87b6356b6c06220459ae4a31f22f62db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ShowWayPoints: 1
-  ShowPositionHandle: 0
+  showWayPoints: 1
+  showPositionHandle: 0
   showConnection: 1
   arrowMesh: {fileID: 1937192335180886834, guid: efb222649c7e71747a430525375fbaa8,
     type: 3}
@@ -1958,7 +1958,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
