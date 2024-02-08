@@ -51,13 +51,13 @@ namespace FarmerStates
         public Animator     animator;
         public AiWayPoints  wayPoints;
     
-        private NpcInteractable _firstDestination;
-        private NpcInteractable _endDestination;
-        public NpcInteractable FirstDestination => _firstDestination;
-        public NpcInteractable EndDestination   => _endDestination;
+        private NpcIntractable _firstDestination;
+        private NpcIntractable _endDestination;
+        public NpcIntractable FirstDestination => _firstDestination;
+        public NpcIntractable EndDestination   => _endDestination;
 
-        public NpcInteractable field;
-        public NpcInteractable inventory;
+        public NpcIntractable field;
+        public NpcIntractable inventory;
     
         private  bool _isBusy;
         [SerializeField] private string currentAnimState = KeyManager.Idle;
@@ -125,7 +125,7 @@ namespace FarmerStates
         /// <param name="endDestination">Field Location</param>
         /// <returns>Bool status of command execution</returns>
         [Button]
-        public bool GoSeeding(NpcInteractable firstDestination, NpcInteractable endDestination)
+        public bool GoSeeding(NpcIntractable firstDestination, NpcIntractable endDestination)
         {
             if (_isBusy)
                 return false;
@@ -146,7 +146,7 @@ namespace FarmerStates
         /// <param name="firstDestination">Location of the field.</param>
         /// <returns>Bool status of command execution</returns>
         [Button]
-        public bool GoWatering(NpcInteractable firstDestination)
+        public bool GoWatering(NpcIntractable firstDestination)
         {
             if (_isBusy)
                 return false;
@@ -167,7 +167,7 @@ namespace FarmerStates
         /// <param name="endDestination">Location of the inventory.</param>
         /// <returns>Bool status of command execution.</returns>
         [Button]
-        public bool GoHarvesting(NpcInteractable firstDestination, NpcInteractable endDestination)
+        public bool GoHarvesting(NpcIntractable firstDestination, NpcIntractable endDestination)
         {
             if (_isBusy)
                 return false;
@@ -190,7 +190,7 @@ namespace FarmerStates
         /// <param name="buildingTime">Time needed to complete the task.</param>
         /// <returns>Bool status of command execution.</returns>
         [Button]
-        public bool GoBuilding(NpcInteractable firstDestination, float buildingTime)
+        public bool GoBuilding(NpcIntractable firstDestination, float buildingTime)
         {
             if (_isBusy)
                 return false;
@@ -212,7 +212,7 @@ namespace FarmerStates
         /// <param name="endDestination">Location to drop object</param>
         /// <returns>Bool status of command execution.</returns>
         [Button]
-        public bool GoCarry(NpcInteractable firstDestination, NpcInteractable endDestination)
+        public bool GoCarry(NpcIntractable firstDestination, NpcIntractable endDestination)
         {
             if (_isBusy)
                 return false;
@@ -235,7 +235,7 @@ namespace FarmerStates
         /// <param name="endDestination">Inventory location to bring the wood.</param>
         /// <returns>Bool status of command execution.</returns>
         [Button]
-        public bool GoCutTree(Tree tree, NpcInteractable endDestination)
+        public bool GoCutTree(Tree tree, NpcIntractable endDestination)
         {
             if (_isBusy)
                 return false;
@@ -243,7 +243,7 @@ namespace FarmerStates
             _isBusy = true;
             farmerAction = FarmerActions.CuttingTree;
             cutTreeState.cutTreeTime = tree.CuttingTime;
-            _firstDestination = tree.npcInteractable;
+            _firstDestination = tree.npcIntractable;
             _endDestination = inventory;
             SwitchState(idleState);
 
@@ -280,8 +280,9 @@ namespace FarmerStates
         internal IEnumerator GetToPositionAndRotation(Vector3 pos, Quaternion rot, float time, Action<bool> callBack)
         {
             float t = 0;
-            var position = transform.position;
-            var rotation = transform.rotation;
+            var rootTrans = transform;
+            var position = rootTrans.position;
+            var rotation = rootTrans.rotation;
             while (t < time)
             {
                 t += Time.deltaTime;

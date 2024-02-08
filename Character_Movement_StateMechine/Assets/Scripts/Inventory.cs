@@ -1,16 +1,17 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Scripts
 {
-    [RequireComponent(typeof(NpcInteractable))]
+    [RequireComponent(typeof(NpcIntractable))]
     public class Inventory : MonoBehaviour
     {
-        public NpcInteractable npcInteractable;
+        [FormerlySerializedAs("npcInteractable")] public NpcIntractable npcIntractable;
 
         private void OnValidate()
         {
-            npcInteractable ??= GetComponent<NpcInteractable>();
+            npcIntractable ??= GetComponent<NpcIntractable>();
         }
     }
 }

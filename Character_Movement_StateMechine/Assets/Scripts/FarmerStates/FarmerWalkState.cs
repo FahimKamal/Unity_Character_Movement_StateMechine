@@ -38,7 +38,7 @@ namespace FarmerStates
             if (farmer.farmerAction is FarmerActions.Seeding && collider == farmer.FirstDestination.AttachedCollider)
             {
                 // farmer.SetPositionAndRotation(collider.transform.GetChild(0).transform);
-                var targetTrans = collider.GetComponent<NpcInteractable>().wayPoints.GetClosestPositionRotation(transform.position);
+                var targetTrans = collider.GetComponent<NpcIntractable>().wayPoints.GetClosestPositionRotation(transform.position);
             
                 StartCoroutine(farmer.GetToPositionAndRotation(
                     targetTrans.position,
@@ -58,7 +58,7 @@ namespace FarmerStates
             if (farmer.farmerAction is FarmerActions.Watering && collider == farmer.FirstDestination.AttachedCollider)
             {
                 // farmer.SetPositionAndRotation(collider.transform.GetChild(0).transform);
-                var targetTrans = collider.GetComponent<NpcInteractable>().wayPoints.GetClosestPositionRotation(transform.position);
+                var targetTrans = collider.GetComponent<NpcIntractable>().wayPoints.GetClosestPositionRotation(transform.position);
             
                 StartCoroutine(farmer.GetToPositionAndRotation(
                     targetTrans.position,
@@ -78,7 +78,7 @@ namespace FarmerStates
             if (farmer.farmerAction == FarmerActions.Harvesting && collider == farmer.FirstDestination.AttachedCollider)
             {
                 // farmer.SetPositionAndRotation(collider.transform.GetChild(0).transform);
-                var targetTrans = collider.GetComponent<NpcInteractable>().wayPoints.GetClosestPositionRotation(transform.position);
+                var targetTrans = collider.GetComponent<NpcIntractable>().wayPoints.GetClosestPositionRotation(transform.position);
             
                 StartCoroutine(farmer.GetToPositionAndRotation(
                     targetTrans.position,
@@ -97,7 +97,7 @@ namespace FarmerStates
             if (farmer.farmerAction == FarmerActions.Building && collider == farmer.FirstDestination.AttachedCollider)
             {
                 // farmer.SetPositionAndRotation(collider.transform.GetChild(0).transform);
-                var targetTrans = collider.GetComponent<NpcInteractable>().wayPoints.GetClosestPositionRotation(transform.position);
+                var targetTrans = collider.GetComponent<NpcIntractable>().wayPoints.GetClosestPositionRotation(transform.position);
             
                 StartCoroutine(farmer.GetToPositionAndRotation(
                     targetTrans.position,
@@ -116,7 +116,7 @@ namespace FarmerStates
             if (farmer.farmerAction is FarmerActions.Carry && collider == farmer.FirstDestination.AttachedCollider)
             {
                 // farmer.SetPositionAndRotation(collider.transform.GetChild(0).transform);
-                var targetTrans = collider.GetComponent<NpcInteractable>().wayPoints.GetClosestPositionRotation(transform.position);
+                var targetTrans = collider.GetComponent<NpcIntractable>().wayPoints.GetClosestPositionRotation(transform.position);
             
                 StartCoroutine(farmer.GetToPositionAndRotation(
                     targetTrans.position,
@@ -133,7 +133,7 @@ namespace FarmerStates
 
             if (farmer.farmerAction is FarmerActions.CuttingTree && collider == farmer.FirstDestination.AttachedCollider)
             {
-                var closestStandPosition = collider.GetComponent<NpcInteractable>().wayPoints.GetClosestPositionRotation(transform.position);
+                var closestStandPosition = collider.GetComponent<NpcIntractable>().wayPoints.GetClosestPositionRotation(transform.position);
                 StartCoroutine(farmer.GetToPositionAndRotation(
                     closestStandPosition.position, 
                     closestStandPosition.rotation, 

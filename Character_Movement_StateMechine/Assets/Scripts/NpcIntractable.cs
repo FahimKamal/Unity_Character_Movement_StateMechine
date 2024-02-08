@@ -4,11 +4,11 @@ using WayPointGizmoTool;
 
 [RequireComponent(typeof(Collider))]
 [RequireComponent(typeof(WayPoints))]
-public class NpcInteractable: MonoBehaviour
+public class NpcIntractable: MonoBehaviour
 {
     [Header("NPC Stand Positions")]
     public WayPoints wayPoints;
-    [SerializeField] private Collider  _collider;
+    [SerializeField] private Collider _collider;
 
     public Collider AttachedCollider => _collider;
 

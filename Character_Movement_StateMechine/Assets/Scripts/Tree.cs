@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Tree : MonoBehaviour
 {
@@ -6,12 +7,12 @@ public class Tree : MonoBehaviour
     [Tooltip("The time it takes to cut the tree")]
     [SerializeField] private float cuttingTime = 10.0f;
     [SerializeField] private float health = 100.0f;
-    public NpcInteractable npcInteractable;
+    [FormerlySerializedAs("npcInteractable")] public NpcIntractable npcIntractable;
 
     public float CuttingTime => cuttingTime;
     public float Health => health;
     private void OnValidate()
     {
-        npcInteractable ??= GetComponent<NpcInteractable>();
+        npcIntractable ??= GetComponent<NpcIntractable>();
     }
 } // class
