@@ -646,8 +646,9 @@ GameObject:
   - component: {fileID: 643210718}
   - component: {fileID: 643210717}
   - component: {fileID: 643210721}
-  - component: {fileID: 643210722}
   - component: {fileID: 643210723}
+  - component: {fileID: 643210724}
+  - component: {fileID: 643210722}
   m_Layer: 0
   m_Name: Inventory
   m_TagString: Inventory
@@ -738,8 +739,7 @@ Transform:
   m_LocalPosition: {x: -16.18, y: 1.93, z: -4.01}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 2016043348}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &643210721
@@ -770,14 +770,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0db44f72857187b4d8f9211fd1fdce08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showLocation: 1
-  arrowMesh: {fileID: 1937192335180886834, guid: efb222649c7e71747a430525375fbaa8,
-    type: 3}
-  standPoints:
-  - name: 
-    position: {x: 0, y: -1.36, z: -1.28}
-    rotation: {x: 0, y: 0.006632203, z: 0, w: 0.999978}
-  wayPoints: {fileID: 643210723}
+  npcInteractable: {fileID: 643210724}
 --- !u!114 &643210723
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -792,11 +785,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShowWayPoints: 1
   showConnection: 0
-  arrowMesh: {fileID: 0}
+  arrowMesh: {fileID: 1937192335180886834, guid: efb222649c7e71747a430525375fbaa8,
+    type: 3}
   positions:
-  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: -1.4245874, z: -1.6036072}
   rotations:
   - {x: 0, y: 0, z: 0, w: 1}
+--- !u!114 &643210724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 643210716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9126c8213797c1645bb44dfe743fa332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wayPoints: {fileID: 643210723}
+  _collider: {fileID: 643210717}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -857,6 +865,8 @@ GameObject:
   - component: {fileID: 919709477}
   - component: {fileID: 919709476}
   - component: {fileID: 919709478}
+  - component: {fileID: 919709479}
+  - component: {fileID: 919709480}
   m_Layer: 0
   m_Name: Tree
   m_TagString: Tree
@@ -914,24 +924,49 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80f221f5ac98c7d488b6b811ea574986, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showLocation: 1
-  arrowMesh: {fileID: 1937192335180886834, guid: efb222649c7e71747a430525375fbaa8,
-    type: 3}
-  standPoints:
-  - name: Up Position
-    position: {x: 0, y: 0, z: 1.71}
-    rotation: {x: 0, y: 1, z: 0, w: -0.00000004371139}
-  - name: Down Position
-    position: {x: 0, y: 0, z: -1.71}
-    rotation: {x: 0, y: 0, z: 0, w: 1}
-  - name: Left Position
-    position: {x: -1.35, y: 0, z: 0}
-    rotation: {x: 0, y: 0.70710677, z: 0, w: 0.70710677}
-  - name: Right Position
-    position: {x: 1.41, y: 0, z: 0}
-    rotation: {x: 0, y: 0.70710677, z: 0, w: -0.70710677}
   cuttingTime: 10
   health: 100
+  npcInteractable: {fileID: 919709480}
+--- !u!114 &919709479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919709475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87b6356b6c06220459ae4a31f22f62db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowWayPoints: 1
+  showConnection: 0
+  arrowMesh: {fileID: 1937192335180886834, guid: efb222649c7e71747a430525375fbaa8,
+    type: 3}
+  positions:
+  - {x: 1.4345417, y: 0.07999998, z: -0.019382477}
+  - {x: 0, y: 0.07999998, z: 1.7782149}
+  - {x: -1.4122267, y: 0.07999998, z: 0}
+  - {x: -0.014180183, y: 0.07999998, z: -1.7835989}
+  rotations:
+  - {x: 0, y: -0.7083584, z: 0, w: 0.70585304}
+  - {x: 0, y: 1, z: 0, w: -0.00000004371139}
+  - {x: 0, y: 0.70710677, z: 0, w: 0.70710677}
+  - {x: 0, y: 0, z: 0, w: 1}
+--- !u!114 &919709480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919709475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9126c8213797c1645bb44dfe743fa332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wayPoints: {fileID: 919709479}
+  _collider: {fileID: 919709476}
 --- !u!1 &992889876
 GameObject:
   m_ObjectHideFlags: 0
@@ -1425,7 +1460,9 @@ GameObject:
   - component: {fileID: 1528886071}
   - component: {fileID: 1528886070}
   - component: {fileID: 1528886069}
+  - component: {fileID: 1528886075}
   - component: {fileID: 1528886074}
+  - component: {fileID: 1528886076}
   m_Layer: 0
   m_Name: Field
   m_TagString: Field
@@ -1548,13 +1585,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cf72906e9f9baa41982d44d9c1c26a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showLocation: 1
+--- !u!114 &1528886075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1528886068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87b6356b6c06220459ae4a31f22f62db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowWayPoints: 1
+  showConnection: 0
   arrowMesh: {fileID: 1937192335180886834, guid: efb222649c7e71747a430525375fbaa8,
     type: 3}
-  standPoints:
-  - name: 
-    position: {x: 0, y: 0.08, z: -2.13}
-    rotation: {x: 0, y: 0, z: 0, w: 1}
+  positions:
+  - {x: -2.9094024, y: 0, z: 0.45000002}
+  rotations:
+  - {x: 0, y: 0.70710677, z: 0, w: 0.70710677}
+--- !u!114 &1528886076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1528886068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9126c8213797c1645bb44dfe743fa332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wayPoints: {fileID: 1528886075}
+  _collider: {fileID: 1528886070}
 --- !u!1 &1534786717
 GameObject:
   m_ObjectHideFlags: 0
@@ -1594,11 +1658,11 @@ MonoBehaviour:
   positions:
   - {x: 0.33682966, y: 0, z: -1.4880579}
   - {x: 1.8260841, y: 0, z: 0.12666875}
-  - {x: -0.6463671, y: 0, z: 1.3845587}
+  - {x: -0.87489223, y: 0, z: 1.4913783}
   rotations:
   - {x: 0, y: 0, z: 0, w: 1}
   - {x: 0, y: -0.77320683, z: 0, w: 0.6341539}
-  - {x: 0, y: 0.96485823, z: 0, w: 0.26277092}
+  - {x: 0, y: 0.94815755, z: 0, w: 0.31780064}
 --- !u!65 &1534786719
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1679,7 +1743,7 @@ Transform:
   m_GameObject: {fileID: 1534786717}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.742782, z: -0, w: 0.6695334}
-  m_LocalPosition: {x: -6.95, y: 2.13, z: -0.939}
+  m_LocalPosition: {x: -7.583, y: 2.13, z: -1.111}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1838,57 +1902,6 @@ MonoBehaviour:
   size: 1.25
   mesh: {fileID: 0}
   scale: {x: 0, y: 0, z: 0}
---- !u!1 &2016043347
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2016043348}
-  - component: {fileID: 2016043349}
-  m_Layer: 0
-  m_Name: Standpoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &2016043348
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2016043347}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.457, z: -0.429}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 643210720}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2016043349
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2016043347}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37dbbe02d037f0341b5d6206d71e16e1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gizmoType: 5
-  drawType: 1
-  color: {r: 0.08395338, g: 1, b: 0, a: 1}
-  radius: 0.31
-  size: 0.3
-  mesh: {fileID: 1937192335180886834, guid: efb222649c7e71747a430525375fbaa8, type: 3}
-  scale: {x: 1, y: 1, z: 1}
 --- !u!1 &2083774340
 GameObject:
   m_ObjectHideFlags: 0
@@ -2061,12 +2074,12 @@ PrefabInstance:
         type: 3}
       propertyPath: field
       value: 
-      objectReference: {fileID: 1528886074}
+      objectReference: {fileID: 1528886076}
     - target: {fileID: 8962877385280880274, guid: 4fbf78656b4b4d14489322e1d3204c97,
         type: 3}
       propertyPath: inventory
       value: 
-      objectReference: {fileID: 643210722}
+      objectReference: {fileID: 643210724}
     - target: {fileID: 8962877385280880274, guid: 4fbf78656b4b4d14489322e1d3204c97,
         type: 3}
       propertyPath: wayPoints

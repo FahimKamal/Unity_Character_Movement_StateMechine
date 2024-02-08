@@ -1,22 +1,16 @@
+using System;
 using UnityEngine;
-using UnityEngine.Serialization;
-using WayPointGizmoTool;
 
 namespace Scripts
 {
-    [RequireComponent(typeof(WayPoints))]
-    public class Inventory : NpcInteractable
+    [RequireComponent(typeof(NpcInteractable))]
+    public class Inventory : MonoBehaviour
     {
-        [SerializeField] private WayPoints wayPoints;
+        public NpcInteractable npcInteractable;
+
         private void OnValidate()
         {
-            wayPoints ??= GetComponent<WayPoints>();
-        }
-
-        private void Start()
-        {
-            var valueTuple = wayPoints.GetPositionRotationAtIndex(2);
-            var some = wayPoints.ShowWayPoints;
+            npcInteractable ??= GetComponent<NpcInteractable>();
         }
     }
 }

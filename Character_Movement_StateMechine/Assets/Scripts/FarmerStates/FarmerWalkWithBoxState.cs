@@ -7,7 +7,7 @@ namespace FarmerStates
         public override void EnterState(FarmerStateManager farmer)
         {
             Debug.Log("Entering WalkWithBox State");
-            farmer.agent.SetDestination(farmer.EndDestination.ClosestStandPositionAndRotation(transform.position).position);
+            farmer.agent.SetDestination(farmer.EndDestination.wayPoints.GetClosestPositionRotation(transform.position).position);
             farmer.PlayAnimation(KeyManager.WalkingWithBox);
         }
 
@@ -20,7 +20,7 @@ namespace FarmerStates
         {
             if (farmer.farmerAction == FarmerActions.Seeding && collider == farmer.EndDestination.AttachedCollider)
             {
-                var targetTrans = collider.GetComponent<NpcInteractable>().ClosestStandPositionAndRotation(transform.position);
+                var targetTrans = collider.GetComponent<NpcInteractable>().wayPoints.GetClosestPositionRotation(transform.position);
             
                 StartCoroutine(farmer.GetToPositionAndRotation(
                     targetTrans.position,
@@ -41,7 +41,7 @@ namespace FarmerStates
             if ((farmer.farmerAction is FarmerActions.Harvesting or FarmerActions.CuttingTree) && collider == farmer.EndDestination.AttachedCollider)
             {
                 // farmer.SetPositionAndRotation(collider.transform.GetChild(0).transform);
-                var targetTrans = collider.GetComponent<NpcInteractable>().ClosestStandPositionAndRotation(transform.position);
+                var targetTrans = collider.GetComponent<NpcInteractable>().wayPoints.GetClosestPositionRotation(transform.position);
             
                 StartCoroutine(farmer.GetToPositionAndRotation(
                     targetTrans.position,
@@ -61,7 +61,7 @@ namespace FarmerStates
             if (farmer.farmerAction is FarmerActions.Carry && collider == farmer.EndDestination.AttachedCollider)
             {
                 // farmer.SetPositionAndRotation(collider.transform.GetChild(0).transform);
-                var targetTrans = collider.GetComponent<NpcInteractable>().ClosestStandPositionAndRotation(transform.position);
+                var targetTrans = collider.GetComponent<NpcInteractable>().wayPoints.GetClosestPositionRotation(transform.position);
             
                 StartCoroutine(farmer.GetToPositionAndRotation(
                     targetTrans.position,

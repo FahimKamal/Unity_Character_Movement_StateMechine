@@ -243,7 +243,7 @@ namespace FarmerStates
             _isBusy = true;
             farmerAction = FarmerActions.CuttingTree;
             cutTreeState.cutTreeTime = tree.CuttingTime;
-            _firstDestination = tree;
+            _firstDestination = tree.npcInteractable;
             _endDestination = inventory;
             SwitchState(idleState);
 
@@ -286,9 +286,11 @@ namespace FarmerStates
             {
                 t += Time.deltaTime;
                 transform.position = Vector3.Lerp(position, pos, t / time);
-                transform.rotation = Quaternion.Lerp(rotation, rot, t / time);
+                // transform.rotation = Quaternion.Lerp(rotation, rot, t / time);
                 yield return null;
             }
+
+            transform.rotation = rot;
             callBack(true);
             yield break;
         }

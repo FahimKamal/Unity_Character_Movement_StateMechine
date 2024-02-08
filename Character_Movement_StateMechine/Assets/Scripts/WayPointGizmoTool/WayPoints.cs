@@ -16,23 +16,24 @@ namespace WayPointGizmoTool
 
         public (Vector3 position, Quaternion rotation) GetPositionRotationAtIndex(int index)
         {
-            return (positions[index], rotations[index]);
+            return (positions[index] + transform.position, rotations[index]);
         }
         
         public (Vector3 position, Quaternion rotation) GetClosestPositionRotation(Vector3 center)
         {
             var closestIndex = 0;
             var closestDistance = float.MaxValue;
+            var worldLocation = transform.position;
             for (int i = 0; i < positions.Count; i++)
             {
-                var distance = Vector3.Distance(center, positions[i]);
+                var distance = Vector3.Distance(center, positions[i] + worldLocation);
                 if (distance < closestDistance)
                 {
                     closestDistance = distance;
                     closestIndex = i;
                 }
             }
-            return (positions[closestIndex], rotations[closestIndex]);
+            return (positions[closestIndex] + worldLocation, rotations[closestIndex]);
         }
         
         private void OnValidate()

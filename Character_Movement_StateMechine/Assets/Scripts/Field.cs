@@ -1,8 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
-public class Field : NpcInteractable
+[RequireComponent(typeof(NpcInteractable))]
+public class Field : MonoBehaviour
 {
-    
+    public NpcInteractable npcInteractable;
+
+    private void OnValidate()
+    {
+        npcInteractable ??= GetComponent<NpcInteractable>();
+    }
 }
