@@ -849,7 +849,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3261879529632703741}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.5578651, y: -0.41687292, z: 0.6086186, w: -0.38024575}
+  m_LocalRotation: {x: -0.55786514, y: -0.41687295, z: 0.6086187, w: -0.38024577}
   m_LocalPosition: {x: 0.048951782, y: 0.095395476, z: -0.004128477}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1127,7 +1127,7 @@ MonoBehaviour:
   wayPoints: {fileID: 0}
   field: {fileID: 0}
   inventory: {fileID: 0}
-  _currentAnimState: Idle
+  currentAnimState: Idle
 --- !u!114 &829427845080192781
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1273,6 +1273,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0d7b76e0592c1c48ad1014e0efdca2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cutTreeTime: 5
+  cutTreeTimer: 0
 --- !u!1 &3793265318589757788
 GameObject:
   m_ObjectHideFlags: 0
@@ -2219,7 +2221,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7675143441928647824}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.0016799051, y: 0.09924823, z: -0.05161504, w: 0.9937217}
+  m_LocalRotation: {x: 0.0016799052, y: 0.09924823, z: -0.051615044, w: 0.9937217}
   m_LocalPosition: {x: -1.9466206e-11, y: 0.26693022, z: 1.5711663e-10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
