@@ -890,12 +890,12 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.7003822, y: 3.2787054, z: 3.3949037}
-  m_Center: {x: 0.011974335, y: 1.5788642, z: 0.011973619}
+  m_Size: {x: 3.12893, y: 3.2787054, z: 3.9112668}
+  m_Center: {x: 0.03045988, y: 1.5788642, z: -0.006107092}
 --- !u!4 &919709477
 Transform:
   m_ObjectHideFlags: 0
@@ -905,7 +905,7 @@ Transform:
   m_GameObject: {fileID: 919709475}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 15.4, y: 1.474, z: 7.11}
+  m_LocalPosition: {x: 15.4, y: 0.53, z: 7.11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -941,8 +941,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   showWayPoints: 1
-  showPositionHandle: 1
-  showConnection: 1
+  showPositionHandle: 0
+  showConnection: 0
   arrowMesh: {fileID: 1937192335180886834, guid: efb222649c7e71747a430525375fbaa8,
     type: 3}
   positions:
@@ -1539,8 +1539,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 2.6762722, z: 1}
-  m_Center: {x: 0, y: 0.83813596, z: 0}
+  m_Size: {x: 1, y: 2.6762722, z: 1.1532242}
+  m_Center: {x: 0, y: 0.83813596, z: -0.076609544}
 --- !u!23 &1528886071
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3730,7 +3730,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &5740779778404490991
 GameObject:
   m_ObjectHideFlags: 0
